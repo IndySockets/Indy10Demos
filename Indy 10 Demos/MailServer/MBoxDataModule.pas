@@ -517,14 +517,9 @@ Var    UserData  : tUserData;
 begin
      // Here you return a list of available messages to the client
      Try
-
- ASender.Reply.SetReply(OK, '1 1254');
- ASender.CommandHandler.Response.Add('1 1254');
- exit;
         UserData := tUserData(ASender.Context.Data);
         UserData.FillMailList;
         TotSize := 0;
-        ASender.CommandHandler.Response.Clear;
         If AMessageNum > 0 then
         begin
              Start := AMessageNum-1;
@@ -543,11 +538,10 @@ begin
              begin
                   TotSize := TotSize + MailData.MailSize;
                   Inc(Undeled);
-                  ASender.CommandHandler.Response.Add(Format('%d %d',[Succ(II),MailData.MailSize]));
+                  ASender{.CommandHandler}.Response.Add(Format('%d %d',[Succ(II),MailData.MailSize]));
              end;
         end;
         ASender.Reply.SetReply(OK,Format('%d %d',[Undeled,TotSize]));
-//        If AMessageNum < 0 then ASender.Response.Add('.');
      Finally
             DebugOutput(Format('LIST %d',[AMessageNum]),ASender);
      End;
