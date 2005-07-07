@@ -348,7 +348,7 @@ procedure TMBoxDataMod.DebugOutput(const Command: String;
 begin
      DebugString(Command);
      DebugString(ASender.Reply.FormattedReply.Text);
-     DebugString(ASender.CommandHandler.Response.Text);
+     DebugString(ASender.Response.Text);
 end;
 
 procedure TMBoxDataMod.DataModuleCreate(Sender: TObject);
@@ -494,7 +494,7 @@ begin
         // We 're here when there was an error
         aCmd.Reply.SetReply(ERR,Format(' -Message not deleted'+Reason,[AMsgNo]));
      Finally
-            aCmd.CommandHandler.Response.Clear;
+            aCmd.Response.Clear;
             DebugOutput(Format('DELE %d',[AMsgNo]),aCmd);
      End;
 end;
@@ -600,7 +600,7 @@ begin
              MailData := tMailData(UserData.MailList.Objects[AMsgNO-1]);
              aCmd.Reply.SetReply(OK,Format('%d octets',[MailData.MailSize]));
              // Now populate aCmd.Response with the data to be returned.
-             aCmd.CommandHandler.Response.LoadFromFile(UserData.MailList[AMsgNO-1]);
+             aCmd.Response.LoadFromFile(UserData.MailList[AMsgNO-1]);
         end
         Else aCmd.Reply.SetReply(ERR,Format(' -Message %d Does not exist.',[AMsgNO]));
      Finally
@@ -629,8 +629,8 @@ begin
         begin
              MailData := tMailData(UserData.MailList.Objects[AMessageNum-1]);
              ASender.Reply.SetReply(OK,Format('%d octets',[MailData.MailSize]));
-             // Now populate ASender.CommandHandler.Response with the data to be returned.
-             ASender.CommandHandler.Response.LoadFromFile(UserData.MailList[AMessageNum-1]);
+             // Now populate ASender.Response with the data to be returned.
+             ASender.Response.LoadFromFile(UserData.MailList[AMessageNum-1]);
         end
         Else ASender.Reply.SetReply(ERR,Format(' -Message %d Does not exist.',[AMessageNum]));
      Finally
@@ -774,7 +774,7 @@ begin
               begin
                    InternalMessage.LoadFromFile(UserData.MailList[ii],true);
                    MyReply := (Format('%d %s',[Succ(II),RemoveAngels(InternalMessage.MsgId)]));
-                   If not SingleLine then ASender.CommandHandler.Response.Add(Format('%d %s',[Succ(II),MyReply]));
+                   If not SingleLine then ASender.Response.Add(Format('%d %s',[Succ(II),MyReply]));
               end
               Else
               Begin
@@ -787,7 +787,6 @@ begin
          end
          else
          begin
-//              ASender.Response.Add('.');
          end;
       finally
              FreeAndNil(InternalMessage);
