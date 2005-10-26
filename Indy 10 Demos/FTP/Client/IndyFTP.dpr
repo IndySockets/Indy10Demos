@@ -24,12 +24,14 @@ uses
   FTPSiteInfo in 'Units\FTPSiteInfo.pas',
   ConfigureSiteForm in 'Forms\ConfigureSiteForm.pas' {frmConfigureSite},
   ConfigureApplicationForm in 'Forms\ConfigureApplicationForm.pas' {frmConfigureApplication},
-  ApplicationConfiguration in 'Units\ApplicationConfiguration.pas';
+  ApplicationConfiguration in 'Units\ApplicationConfiguration.pas',
+  AboutForm in 'Forms\AboutForm.pas' {frmAbout};
 
 {$R *.RES}
 
 begin
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmAbout, frmAbout);
   Application.Run;
 end.

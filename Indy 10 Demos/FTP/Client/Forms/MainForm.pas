@@ -160,6 +160,9 @@ var
 
 implementation
 
+uses
+  AboutForm;
+
 {$R *.DFM}
 
 { TfrmMain }
@@ -541,7 +544,8 @@ end;
 procedure TfrmMain.actHelpExecute(Sender: TObject);
 begin
   if actHelp.Enabled then
-    ShellExecute(handle, 'OPEN', PChar(HelpFile), '', '', SW_SHOWNORMAL);
+    frmAbout.ShowModal;
+    //ShellExecute(handle, 'OPEN', PChar(HelpFile), '', '', SW_SHOWNORMAL);
 end;
 
 function TfrmMain.GetHelpFile: String;
