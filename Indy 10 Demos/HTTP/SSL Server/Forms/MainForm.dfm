@@ -187,7 +187,7 @@ object frmMain: TfrmMain
         Width = 145
         Height = 21
         Style = csDropDownList
-        ItemHeight = 13
+        ItemHeight = 0
         TabOrder = 1
       end
       object edPort: TEdit

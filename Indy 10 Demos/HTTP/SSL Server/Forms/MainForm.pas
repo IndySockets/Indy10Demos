@@ -76,7 +76,6 @@ type
       const AStatusText: String);
     procedure ServerException(AContext: TIdContext; AException: Exception);
     procedure FormActivate(Sender: TObject);
-    procedure ServerExecute(AContext: TIdContext);
     procedure ServerConnect(AContext: TIdContext);
     procedure ServerDisconnect(AContext: TIdContext);
     procedure edPortKeyPress(Sender: TObject; var Key: Char);
@@ -510,12 +509,6 @@ procedure TfrmMain.FormActivate(Sender: TObject);
 begin
   Top := Ini.ReadInteger('Placement', 'Top', Top);
   Left:= Ini.ReadInteger('Placement', 'Left', Left);
-end;
-
-procedure TfrmMain.ServerExecute(AContext: TIdContext);
-begin
-// Your stuff for OnExecute goes here.
-
 end;
 
 procedure TfrmMain.ServerConnect(AContext: TIdContext);
