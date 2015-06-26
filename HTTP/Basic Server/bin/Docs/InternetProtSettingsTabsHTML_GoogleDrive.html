@@ -1,0 +1,81 @@
+<div id="jqxInternetProtSettingsTabs">
+                <ul>
+                    <li>Settings</li>
+                    <li>Advanced</li>
+                    <li>Proxy Settings</li>         
+                    <li>Google Docs</li>
+                </ul>
+                <div>                                                                                                     
+                    <div>Library</div><div id="jqxLibraryCombo" style="float: left;"></div>
+                    <br/><br/>
+                    <div>Folder</div><div><input type="text" id="inptInternetFolder"/></div>
+                    <br/><br/>
+                    <div>Account( opt. )</div><div><input type="password" id="inptAccountOpt"/></div>
+                    <br/><br/>                  
+                    <div>Save Optional Account Name</div><div><div id="cbIntProtSet_GDrive_save_optional_accname"/></div>                          
+                    <div>Allow IPV6</div><div><div id="cbIntProtSet_GDrive_allow_ipv6"/></div> 
+                    <div>Automatically resume incomplete transfers(using temporary filenames until complete)</div><div><div id="cbIntProtSet_GDrive_auto_resume_transfer"/></div>
+                    <div>Filename Encoding: on right side, put timestamp in file names(to preserve it if server doesn"t support setting file times)</div>
+                    <div><div id="cbIntProtSet_GDrive_filename_encoding"/></div><br/>                                                                                                                
+                </div>                  
+                <div>
+                    <div>Character Set:</div><div id ="comboIntProtSet_GDrive_adv_Charset" style="float: left;"></div><br/><br/>                
+                    <div>Replace characters</div><div><div id="cbIntProtSet_GDrive_adv_replace_characters"/></div>
+                    <div>Enable Document Conversion</div><div><div id="cbIntProtSet_GDrive_adv_enable_doc_convercion"/></div>
+                    <div>Zone</div><div><div id="cbIntProtSet_GDrive_adv_zone"/></div> 
+                    <div>Auto</div><div><div id="cbIntProtSet_GDrive_adv_auto"/></div>       
+                    <div>UTC Offsets</div><div><div id="cbIntProtSet_GDrive_adv_UTC"/></div>     
+                    <div>List</div><div><input type="text" id="inptIntProtSet_GDrive_adv_list"/></div>
+                    <div>Upload</div><div><input type="text" id="inptIntProtSet_GDrive_adv_upload_min"/></div><div>min</div>   
+                    <div>Timeout</div><div><input type="text" id="inptIntProtSet_GDrive_adv_timeout"/></div><div>seconds. These are global settings</div>   
+                    <div>Retries</div><div><input type="text" id="inptIntProtSet_GDrive_adv_retries"/></div>   
+                    <div>HTTP Authentication Retries</div><div><input type="text" id="inptIntProtSet_GDrive_adv_http_retries"/></div>   
+                </div>
+                <div> 
+                    <!--Proxy Settings-->
+                    <div>Proxy Type</div><div id ="comboIntProtSet_GDrive_proxy_proxy_type" style="float: left;"></div><br/><br/>                
+                    <div>Proxy Host:</div><div><input type="text" id="inptIntProtSet_GDrive_proxy_proxy_host"/></div>
+                    <div>Port:</div><div><input type="text" id="inptIntProtSet_GDrive_proxy_proxy_port"/></div>
+                    <div>User ID (login):</div><div><input type="text" id="inptIntProtSet_GDrive_proxy_login"/></div>
+                    <div>Password:</div><div><input type="password" id="inptIntProtSet_GDrive_proxy_password"/></div>
+                    <div>if a proxy login is needed, it must be specified here and will be stored permamently(encrypted)</div> 
+                    <div>For "USER" with no logon, please leave User ID and Passwor fields blank!</div>
+                    <div>Send HOST command</div><div><div id="cbIntProtSet_GDrive_proxy_send_host_command"/></div>                                                                                              
+                </div>
+                <div>
+                   <!--Google Docs-->
+                   <div>These are global settings that apply to all profiles</div>  
+                   <div>Format For Downloaded Spreadsheets</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_xlsx">.xlsx</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_csv">.csv</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_pdf">.pdf</div>         
+
+                   <div>Format For Downloaded Documents</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_dd_docx">.docx</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_dd_odt">.odt</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_dd_rtf">.rtf</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_dd_html">.html</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_dd_pdf">.pdf</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_dd_txt">.txt</div>
+                   <div>Format For Downloaded Presentations</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_dpres_pptx">.pptx</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_dpres_pdf">.pdf</div>
+                       <div id="rbIntProtSet_GDrive_GDocs_dpres_txt">.txt</div>                         
+                    <div>File Types To Convert As Google Docs When Uploading</div>
+                       <div>.csv</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_csv"/></div> 
+                       <div>.html</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_html"/></div> 
+                       <div>.pdf</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_pdf"/></div>    
+                       <div>.pptx</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_pptx"/></div>    
+                       <div>.txt</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_txt"/></div>    
+                       <div>.doc</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_doc"/></div>  
+                       <div>.ods</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_ods"/></div>  
+                       <div>.pps</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_pps"/></div>  
+                       <div>.rtf</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_rtf"/></div>  
+                       <div>.xls</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_xls"/></div>  
+                       <div>.docx</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_docx"/></div>  
+                       <div>.odt</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_odt"/></div>  
+                       <div>.ppt</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_ppt"/></div>  
+                       <div>.tsv</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_tsv"/></div>  
+                       <div>.xlsx</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_xlsx"/></div>  
+                </div>
+             </div>
