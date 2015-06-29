@@ -289,6 +289,100 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                       { name: 'internet_protocol_Asure_security_nopassword', map: 'internet_protocol_Asure_security_nopassword', type: 'boolean' }
                     ]                       
                 }
+                else if( ProtocolName == 'WebDAV' )
+                { 
+                    IntProtSetSource.datafields = [
+                      { name: 'Name', type: 'string' },
+                      { name: 'internet_protocol_WebDAV_LibraryComboIndex', map: 'internet_protocol_WebDAV_LibraryComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_url', map: 'internet_protocol_WebDAV_url', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_AuthenticationComboIndex', map: 'internet_protocol_WebDAV_AuthenticationComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_InternetFolder', map: 'internet_protocol_WebDAV_InternetFolder', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_login', map: 'internet_protocol_WebDAV_login', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_AccountOpt', map: 'internet_protocol_WebDAV_AccountOpt', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_save_user_id', map: 'internet_protocol_WebDAV_save_user_id', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_save_password', map: 'internet_protocol_WebDAV_save_password', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_allow_ipv6', map: 'internet_protocol_WebDAV_allow_ipv6', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_filename_encoding', map: 'internet_protocol_WebDAV_filename_encoding', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_adv_CharsetComboIndex', map: 'internet_protocol_WebDAV_adv_CharsetComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_adv_replace_characters', map: 'internet_protocol_WebDAV_adv_replace_characters', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_adv_strategyCombo', map: 'internet_protocol_WebDAV_adv_strategyCombo', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_adv_use_displayname', map: 'internet_protocol_WebDAV_adv_use_displayname', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_adv_use_expect_100_continue', map: 'internet_protocol_WebDAV_adv_use_expect_100_continue', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_adv_TimestampsForUploads', map: 'internet_protocol_WebDAV_adv_TimestampsForUploads', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_adv_zone', map: 'internet_protocol_WebDAV_adv_zone', type: 'boolean' },  
+                      { name: 'internet_protocol_WebDAV_adv_auto', map: 'internet_protocol_WebDAV_adv_auto', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_adv_UTC', map: 'internet_protocol_WebDAV_adv_UTC', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_adv_list', map: 'internet_protocol_WebDAV_adv_list', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_adv_upload_min', map: 'internet_protocol_WebDAV_adv_upload_min', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_adv_timeout', map: 'internet_protocol_WebDAV_adv_timeout', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_adv_retries', map: 'internet_protocol_WebDAV_adv_retries', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_adv_http_retries', map: 'internet_protocol_WebDAV_adv_http_retries', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_proxy_proxy_type', map: 'internet_protocol_WebDAV_proxy_proxy_type', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_proxy_proxy_host', map: 'internet_protocol_WebDAV_proxy_proxy_host', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_proxy_proxy_port', map: 'internet_protocol_WebDAV_proxy_proxy_port', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_proxy_login', map: 'internet_protocol_WebDAV_proxy_login', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_proxy_password', map: 'internet_protocol_WebDAV_proxy_password', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_proxy_send_host_command', map: 'internet_protocol_WebDAV_proxy_send_host_command', type: 'boolean' },
+                      { name: 'IntProtSet_WebDAV_Version_Group', map: 'IntProtSet_WebDAV_Version_Group', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_Security_SSH_username_password', map: 'internet_protocol_WebDAV_Security_SSH_username_password', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_Security_SSH_keyboard', map: 'internet_protocol_WebDAV_Security_SSH_keyboard', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_Security_SSH_certificate', map: 'internet_protocol_WebDAV_Security_SSH_certificate', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_security_CertificateComboIndex', map: 'internet_protocol_WebDAV_security_CertificateComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_WebDAV_security_CertificatePassword', map: 'internet_protocol_WebDAV_security_CertificatePassword', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_security_nopassword', map: 'internet_protocol_WebDAV_security_nopassword', type: 'boolean' },
+                      { name: 'internet_protocol_WebDAV_certificates_certificates', map: 'internet_protocol_WebDAV_certificates_certificates', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_certificates_certname_forreference', map: 'internet_protocol_WebDAV_certificates_certname_forreference', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_certificates_private_keyfile', map: 'internet_protocol_WebDAV_certificates_private_keyfile', type: 'string' },  
+                      { name: 'internet_protocol_WebDAV_certificates_public_keyfile', map: 'internet_protocol_WebDAV_certificates_public_keyfile', type: 'string' }  
+         
+                      ]              
+
+                }                       
+                else if( ProtocolName == 'RSync' )
+                { 
+                    IntProtSetSource.datafields = [
+                      { name: 'Name', type: 'string' },
+                      { name: 'internet_protocol_RSync_LibraryComboIndex', map: 'internet_protocol_RSync_LibraryComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_url', map: 'internet_protocol_Rsync_url', type: 'string' },  
+                      { name: 'internet_protocol_Rsync_port_number', map: 'internet_protocol_Rsync_port_number', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_InternetFolder', map: 'internet_protocol_Rsync_InternetFolder', type: 'string' },  
+                      { name: 'internet_protocol_Rsync_login', map: 'internet_protocol_Rsync_login', type: 'string' },  
+                      { name: 'internet_protocol_Rsync_AccountOpt', map: 'internet_protocol_Rsync_AccountOpt', type: 'string' },                          
+                      { name: 'internet_protocol_Rsync_save_user_id', map: 'internet_protocol_Rsync_save_user_id', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_save_password', map: 'internet_protocol_Rsync_save_password', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_allow_ipv6', map: 'internet_protocol_Rsync_allow_ipv6', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_adv_CharsetComboIndex', map: 'internet_protocol_Rsync_adv_CharsetComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_adv_replace_characters', map: 'internet_protocol_Rsync_adv_replace_characters', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_adv_TimestampsForUploadsComboIndex', map: 'internet_protocol_Rsync_adv_TimestampsForUploadsComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_adv_zone', map: 'internet_protocol_Rsync_adv_zone', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_adv_auto', map: 'internet_protocol_Rsync_adv_auto', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_adv_UTC', map: 'internet_protocol_Rsync_adv_UTC', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_adv_list', map: 'internet_protocol_Rsync_adv_list', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_adv_upload_min', map: 'internet_protocol_Rsync_adv_upload_min', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_adv_timeout', map: 'internet_protocol_Rsync_adv_timeout', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_adv_retries', map: 'internet_protocol_Rsync_adv_retries', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_adv_http_retries', map: 'internet_protocol_Rsync_adv_http_retries', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_proxy_proxy_typeComboIndex', map: 'internet_protocol_Rsync_proxy_proxy_typeComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_proxy_proxy_host', map: 'internet_protocol_Rsync_proxy_proxy_host', type: 'string' },                          
+                      { name: 'internet_protocol_Rsync_proxy_proxy_port', map: 'internet_protocol_Rsync_proxy_proxy_port', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_proxy_login', map: 'internet_protocol_Rsync_proxy_login', type: 'string' },                          
+                      { name: 'internet_protocol_Rsync_proxy_password', map: 'internet_protocol_Rsync_proxy_password', type: 'string' },                          
+                      { name: 'internet_protocol_Rsync_proxy_send_host_command', map: 'internet_protocol_Rsync_proxy_send_host_command', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_Security_SSH_username_password', map: 'internet_protocol_Rsync_Security_SSH_username_password', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_Security_SSH_keyboard', map: 'internet_protocol_Rsync_Security_SSH_keyboard', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_Security_SSH_certificate', map: 'internet_protocol_Rsync_Security_SSH_certificate', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_security_CertificateIndex', map: 'internet_protocol_Rsync_security_CertificateIndex', type: 'number' },  
+                      { name: 'internet_protocol_Rsync_security_CertificatePassword', map: 'internet_protocol_Rsync_security_CertificatePassword', type: 'string' },                          
+                      { name: 'internet_protocol_Rsync_security_nopassword', map: 'internet_protocol_Rsync_security_nopassword', type: 'boolean' },  
+                      { name: 'internet_protocol_Rsync_proxy_login', map: 'internet_protocol_Rsync_proxy_login', type: 'string' },                          
+                      { name: 'internet_protocol_Rsync_certificates_certificates', map: 'internet_protocol_Rsync_certificates_certificates', type: 'string' },                          
+                      { name: 'internet_protocol_Rsync_certificates_certname_forreference', map: 'internet_protocol_Rsync_certificates_certname_forreference', type: 'string' },                          
+                      { name: 'internet_protocol_Rsync_certificates_private_keyfile', map: 'internet_protocol_Rsync_certificates_private_keyfile', type: 'string' },                          
+                      { name: 'internet_protocol_Rsync_certificates_public_keyfile', map: 'internet_protocol_Rsync_certificates_public_keyfile', type: 'string' }                          
+                      
+                    ]
+                }                              
+ 
                
              
 }

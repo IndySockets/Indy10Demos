@@ -44,15 +44,15 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
       }  
            
       /*
-      ftpGUIlikeFTP          =1;
+      ftpGUIlikeFTP          =1;+
       ftpGUIlikeSFTP         =2;
-      ftpGUIlikeWebDAV       =3;
-      ftpGUIlikeAmazonS3     =4;
-      ftpGUIlikeAzure        =5;
+      ftpGUIlikeWebDAV       =3;+
+      ftpGUIlikeAmazonS3     =4;+
+      ftpGUIlikeAzure        =5;+
       ftpGUIlikeAmazonGlacier=6;
-      ftpGUIlikeGoogleDrive  =7;
+      ftpGUIlikeGoogleDrive  =7;+
       ftpGUIlikeRSync        =8;
-      ftpGUIlikeHTTP         =9;
+      ftpGUIlikeHTTP         =9;+
       ftpGUIlikeMTP          =10;
       */ 
       if( ProtocolName == 'FTP' || ProtocolName == 'SSH')
@@ -387,8 +387,7 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
         
           $("#inptIntProtSet_Asure_container").jqxInput({ width: 350, height: 25 });
           $("#inptInternetFolder").jqxInput({ width: 350, height: 25 });
-          $("#inptIntProtSet_Asure_account_id").jqxInput({ width: 350, height: 25 });
-          $("#inptIntProtSet_Asure_account_id").jqxInput({ width: 350, height: 25 });          
+          $("#inptIntProtSet_Asure_account_id").jqxInput({ width: 350, height: 25 });                   
           $("#inptAccountOpt").jqxPasswordInput({ width: 350, height: 25 });
           $("#cbIntProtSet_Asure_save_user_id").jqxCheckBox({ width: 120, height: 25});
           $("#cbIntProtSet_Asure_save_password").jqxCheckBox({ width: 120, height: 25});
@@ -437,14 +436,166 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           var Asure_security_CertificateComboSource = ['none'];
           $("#comboIntProtSet_Asure_security_Certificate").jqxComboBox({ source: Asure_security_CertificateComboSource, selectedIndex: 0, width: '250', height: '25px'});
           $("#inptIntProtSet_Asure_security_CertificatePassword").jqxPasswordInput({ width: 350, height: 25 }); 
-          $("#cbIntProtSet_Asure_security_nopassword").jqxCheckBox({ width: 120, height: 25});
-
-
-
-                    
+          $("#cbIntProtSet_Asure_security_nopassword").jqxCheckBox({ width: 120, height: 25});                    
                                                                                                                           
        }
+       else if( ProtocolName == 'WebDAV' )
+       {
+          $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_WebDAV );  
+          GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });   
+     
 
+          var LibraryComboSource = ['1 MS(SSL)', '2 Open(SSL)'];
+          $("#jqxLibraryCombo").jqxComboBox({ source: LibraryComboSource, selectedIndex: 0, width: '100', height: '25px'});
+          $("#inptIntProtSetWebDAV_url").jqxInput({ width: 350, height: 25 });
+          var AuthenticationComboSource = ['Basic', 'Auto'];
+          $("#jqxWebDAVAuthenticationCombo").jqxComboBox({ source: AuthenticationComboSource, selectedIndex: 0, width: '100', height: '25px'});
+          $("#inptInternetFolder").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_WebDAV_login").jqxInput({ width: 350, height: 25 });
+          $("#inptAccountOpt").jqxPasswordInput({ width: 350, height: 25 });          
+          $("#cbIntProtSet_WebDAV_save_user_id").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_WebDAV_save_password").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_WebDAV_allow_ipv6").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_WebDAV_filename_encoding").jqxCheckBox({ width: 120, height: 25});
+        
+
+          var WebDAV_adv_CharsetComboSource = ['Automatic', 'Unicode(UTF-8)', 'Windows ANSI' ];
+
+          $("#comboIntProtSet_WebDAV_adv_Charset").jqxComboBox({ source: WebDAV_adv_CharsetComboSource, selectedIndex: 0, width: '100', height: '25px'});
+          $("#cbIntProtSet_WebDAV_adv_replace_characters").jqxCheckBox({ width: 120, height: 25});
+
+          var WebDAV_adv_strategyComboSource = ['Get All Properties', 'Get Necessary Properties Only', 'PROPFIND without XML body' ];
+          $("#comboIntProtSet_WebDAV_adv_strategyCombo").jqxComboBox({ source: WebDAV_adv_strategyComboSource, selectedIndex: 0, width: '100', height: '25px'});
+          
+          $("#cbIntProtSet_WebDAV_adv_use_displayname").jqxCheckBox({ width: 120, height: 25});
+          $("#comboIntProtSet_WebDAV_adv_use_expect_100_continue").jqxCheckBox({ width: 120, height: 25});
+             
+          var WebDAV_adv_TimestampsComboSource = ['Auto-Detect If Settable', 'WebDrive/GroupDrive', 'CrushFTP', 'OnlineDrive by CM4all', 'vitalEsafe' ];
+          $("#comboIntProtSet_WebDAV_adv_TimestampsForUploads").jqxComboBox({ source: WebDAV_adv_TimestampsComboSource, selectedIndex: 0, width: '100', height: '25px'});
+          $("#cbIntProtSet_WebDAV_adv_zone").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_WebDAV_adv_auto").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_WebDAV_adv_UTC").jqxCheckBox({ width: 120, height: 25});
+
+
+  
+          $("#inptIntProtSet_WebDAV_adv_list").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });
+          $("#inptIntProtSet_WebDAV_adv_upload_min").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });
+                    
+
+          $("#inptIntProtSet_WebDAV_adv_timeout").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });          
+          $("#inptIntProtSet_WebDAV_adv_retries").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });          
+          $("#inptIntProtSet_WebDAV_adv_http_retries").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });                                                
+
+          
+
+          var WebDAV_proxy_proxy_typeComboSource = ['No Proxy(default)', 'USER user@hostname', 'SITE(with logon)', 'OPEN', 'USER/PASS combined', 'Transparent'];
+          $("#comboIntProtSet_WebDAV_proxy_proxy_type").jqxComboBox({ source: WebDAV_proxy_proxy_typeComboSource, selectedIndex: 0, width: '250', height: '25px'});
+          $("#inptIntProtSet_WebDAV_proxy_proxy_host").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_WebDAV_proxy_proxy_port").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+
+          $("#inptIntProtSet_WebDAV_proxy_login").jqxInput({ width: 350, height: 25 });          
+          $("#inptIntProtSet_WebDAV_proxy_password").jqxPasswordInput({ width: 350, height: 25 });
+          $("#cbIntProtSet_WebDAV_proxy_send_host_command").jqxCheckBox({ width: 120, height: 25});    
+          
+ 
+
+          $("#rbIntProtSet_WebDAV_Security_SSLv2").jqxRadioButton({ groupName: 'IntProtSet_WebDAV_Version_Group', rtl: false});                     
+          $("#rbIntProtSet_WebDAV_Security_SSLv2_3").jqxRadioButton({ groupName: 'IntProtSet_WebDAV_Version_Group', rtl: false}); 
+          $("#rbIntProtSet_WebDAV_Security_SSLv3").jqxRadioButton({ groupName: 'IntProtSet_WebDAV_Version_Group', rtl: false}); 
+          $("#rbIntProtSet_WebDAV_Security_TLSv_1_1_2").jqxRadioButton({ groupName: 'IntProtSet_WebDAV_Version_Group', rtl: false}); 
+
+          $("#btnIntProtSet_WebDAV_Security_Advanced_SSH").jqxButton({ template: "info" }); 
+
+          $("#cbIntProtSet_WebDAV_Security_SSH_username_password").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_WebDAV_Security_SSH_keyboard").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_WebDAV_Security_SSH_certificate").jqxCheckBox({ width: 120, height: 25});
+
+          var WebDAV_security_CertificateComboSource = ['none'];
+          $("#comboIntProtSet_WebDAV_security_Certificate").jqxComboBox({ source: WebDAV_security_CertificateComboSource, selectedIndex: 0, width: '250', height: '25px'});
+          $("#inptIntProtSet_WebDAV_security_CertificatePassword").jqxPasswordInput({ width: 350, height: 25 }); 
+          $("#cbIntProtSet_WebDAV_security_nopassword").jqxCheckBox({ width: 120, height: 25});                    
+        
+
+          $("#inptIntProtSet_WebDAV_certificates_certificates").jqxInput({ width: 350, height: 150 });     
+          $("#inptIntProtSet_WebDAV_certificates_certname_forreference").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_WebDAV_certificates_private_keyfile").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_WebDAV_certificates_public_keyfile").jqxInput({ width: 350, height: 25 });
+       }
+       else if( ProtocolName == 'RSync' )
+       {
+           
+          $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_RSync );  
+          GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });        
+          var LibraryComboSource = ['1 (SSH)', '2 (Direct)'];
+          $("#jqxLibraryCombo").jqxComboBox({ source: LibraryComboSource, selectedIndex: 0, width: '100', height: '25px'});
+
+          $("#inptIntProtSet_Rsync_url").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_Rsync_port_number").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+          $("#inptInternetFolder").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_Rsync_login").jqxInput({ width: 350, height: 25 });
+          $("#inptAccountOpt").jqxPasswordInput({ width: 350, height: 25 });          
+          $("#cbIntProtSet_Rsync_save_user_id").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_Rsync_save_password").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_Rsync_allow_ipv6").jqxCheckBox({ width: 120, height: 25});
+
+          var RSync_adv_CharsetComboSource = ['Automatic', 'Unicode(UTF-8)', 'Windows ANSI' ];
+
+          $("#comboIntProtSet_Rsync_adv_Charset").jqxComboBox({ source: RSync_adv_CharsetComboSource, selectedIndex: 0, width: '100', height: '25px'});
+          $("#cbIntProtSet_Rsync_adv_replace_characters").jqxCheckBox({ width: 120, height: 25});
+  
+
+             
+          var Rsync_adv_TimestampsComboSource = ['Auto-Detect If Settable', 'WebDrive/GroupDrive', 'CrushFTP', 'OnlineDrive by CM4all', 'vitalEsafe' ];
+          $("#comboIntProtSet_Rsync_adv_TimestampsForUploads").jqxComboBox({ source: Rsync_adv_TimestampsComboSource, selectedIndex: 0, width: '100', height: '25px'});
+          $("#cbIntProtSet_Rsync_adv_zone").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_Rsync_adv_auto").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_Rsync_adv_UTC").jqxCheckBox({ width: 120, height: 25});
+
+
+  
+          $("#inptIntProtSet_Rsync_adv_list").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });
+          $("#inptIntProtSet_Rsync_adv_upload_min").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });
+                    
+
+          $("#inptIntProtSet_Rsync_adv_timeout").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });          
+          $("#inptIntProtSet_Rsync_adv_retries").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });          
+          $("#inptIntProtSet_Rsync_adv_http_retries").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });                                                
+
+
+
+
+          var Rsync_proxy_proxy_typeComboSource = ['No Proxy(default)', 'USER user@hostname', 'SITE(with logon)', 'OPEN', 'USER/PASS combined', 'Transparent'];
+          $("#comboIntProtSet_Rsync_proxy_proxy_type").jqxComboBox({ source: Rsync_proxy_proxy_typeComboSource, selectedIndex: 0, width: '250', height: '25px'});
+          $("#inptIntProtSet_Rsync_proxy_proxy_host").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_Rsync_proxy_proxy_port").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+
+          $("#inptIntProtSet_Rsync_proxy_login").jqxInput({ width: 350, height: 25 });          
+          $("#inptIntProtSet_Rsync_proxy_password").jqxPasswordInput({ width: 350, height: 25 });
+          $("#cbIntProtSet_Rsync_proxy_send_host_command").jqxCheckBox({ width: 120, height: 25});    
+          
+ 
+
+          
+          $("#btnIntProtSet_Rsync_Security_Advanced_SSH").jqxButton({ template: "info" }); 
+
+          $("#cbIntProtSet_Rsync_Security_SSH_username_password").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_Rsync_Security_SSH_keyboard").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_Rsync_Security_SSH_certificate").jqxCheckBox({ width: 120, height: 25});
+
+          var Rsync_security_CertificateComboSource = ['none'];
+          $("#comboIntProtSet_Rsync_security_Certificate").jqxComboBox({ source: Rsync_security_CertificateComboSource, selectedIndex: 0, width: '250', height: '25px'});
+          $("#inptIntProtSet_Rsync_security_CertificatePassword").jqxPasswordInput({ width: 350, height: 25 }); 
+          $("#cbIntProtSet_Rsync_security_nopassword").jqxCheckBox({ width: 120, height: 25});                    
+        
+
+          $("#inptIntProtSet_Rsync_certificates_certificates").jqxInput({ width: 350, height: 150 });     
+          $("#inptIntProtSet_Rsync_certificates_certname_forreference").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_Rsync_certificates_private_keyfile").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_Rsync_certificates_public_keyfile").jqxInput({ width: 350, height: 25 });
+          
+          
+
+       }
         LoadRegistryListToControls( GCurrentInternetProtocolSetRegistryList, ProtocolName );                                                                     
 
         if( GInternetProtSettingsTabs != null)   

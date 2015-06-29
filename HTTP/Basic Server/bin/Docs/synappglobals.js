@@ -7,6 +7,8 @@ var InternetProtSettingsTabsHTML_GoogleDrive = "";
 var InternetProtSettingsTabsHTML_HTTP = "";
 var InternetProtSettingsTabsHTML_AmazonS3 = "";
 var InternetProtSettingsTabsHTML_Asure = "";
+var InternetProtSettingsTabsHTML_WebDAV = "";
+var InternetProtSettingsTabsHTML_RSync = "";
 var GFuncInitProfileEditorForm = null;
 
 var GSelectedProfileName = "";
@@ -71,9 +73,11 @@ function LoadRecordToRegistryList(record, RegistryList, ControlAppGroup)
                     if( RegistryItem.controltype == "jqxCheckBox" )
                     {
                                           
-                       RegistryItem.value = false;
+                       RegistryItem.value = "false";
                        if( record[ RegistryItem.fieldname ] != "" )
+                       {
                           RegistryItem.value = record[ RegistryItem.fieldname ];                                           
+                       }   
                        
                     }
                     else  if( RegistryItem.controltype == "jqxInput" )
@@ -110,7 +114,9 @@ function LoadRecordToRegistryList(record, RegistryList, ControlAppGroup)
                     }  
                     else if( RegistryItem.controltype == "jqxComboBox" )
                     {
-                        RegistryItem.value = record[ RegistryItem.fieldname ];
+                        RegistryItem.value = 0;
+                        if( record[ RegistryItem.fieldname ] != "" )
+                          RegistryItem.value = record[ RegistryItem.fieldname ];
                     };
                  }   
                }
@@ -139,6 +145,8 @@ function LoadRegistryListToControls( RegistryList, ControlAppGroup )
                   if( RegistryItem.controltype == "jqxCheckBox" )
                   {
                                         
+                     if( RegistryItem.value == null )                   
+                        RegistryItem.value = "false";
                      $("#" + RegistryItem.controlname).jqxCheckBox( 'val', RegistryItem.value );
                      
                   }
@@ -176,6 +184,8 @@ function LoadRegistryListToControls( RegistryList, ControlAppGroup )
                   }  
                   else if( RegistryItem.controltype == "jqxComboBox" )
                   {                  
+                    if( RegistryItem.value == null )
+                      RegistryItem.value = 0;
                     $("#" + RegistryItem.controlname).jqxComboBox( {selectedIndex: RegistryItem.value } );                  
                   };                              
                 }  
@@ -1025,6 +1035,106 @@ var GInternetProtocolSetRegistryList =  new Array();
             
                                                                                                                                                                                                                                                                                                     
 	      
+            GInternetProtocolSetRegistryList[202] = {fieldname:"internet_protocol_WebDAV_LibraryComboIndex", type:"number", controlname:"jqxLibraryCombo", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[203] = {fieldname:"internet_protocol_WebDAV_url", type:"string", controlname:"inptIntProtSetWebDAV_url", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[204] = {fieldname:"internet_protocol_WebDAV_AuthenticationComboIndex", type:"number", controlname:"jqxWebDAVAuthenticationCombo", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[205] = {fieldname:"internet_protocol_WebDAV_InternetFolder", type:"string", controlname:"inptInternetFolder", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[206] = {fieldname:"internet_protocol_WebDAV_login", type:"string", controlname:"inptIntProtSet_WebDAV_login", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[207] = {fieldname:"internet_protocol_WebDAV_AccountOpt", type:"string", controlname:"inptAccountOpt", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[208] = {fieldname:"internet_protocol_WebDAV_save_user_id", type:"boolean", controlname:"cbIntProtSet_WebDAV_save_user_id", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[209] = {fieldname:"internet_protocol_WebDAV_save_password", type:"boolean", controlname:"cbIntProtSet_WebDAV_save_password", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[210] = {fieldname:"internet_protocol_WebDAV_allow_ipv6", type:"boolean", controlname:"cbIntProtSet_WebDAV_allow_ipv6", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[211] = {fieldname:"internet_protocol_WebDAV_filename_encoding", type:"boolean", controlname:"cbIntProtSet_WebDAV_filename_encoding", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[212] = {fieldname:"internet_protocol_WebDAV_adv_CharsetComboIndex", type:"number", controlname:"comboIntProtSet_WebDAV_adv_Charset", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[213] = {fieldname:"internet_protocol_WebDAV_adv_replace_characters", type:"boolean", controlname:"cbIntProtSet_WebDAV_adv_replace_characters", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[214] = {fieldname:"internet_protocol_WebDAV_adv_strategyCombo", type:"number", controlname:"comboIntProtSet_WebDAV_adv_strategyCombo", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[215] = {fieldname:"internet_protocol_WebDAV_adv_use_displayname", type:"boolean", controlname:"cbIntProtSet_WebDAV_adv_use_displayname", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[216] = {fieldname:"internet_protocol_WebDAV_adv_use_expect_100_continue", type:"boolean", controlname:"comboIntProtSet_WebDAV_adv_use_expect_100_continue", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[217] = {fieldname:"internet_protocol_WebDAV_adv_TimestampsForUploads", type:"number", controlname:"comboIntProtSet_WebDAV_adv_TimestampsForUploads", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[218] = {fieldname:"internet_protocol_WebDAV_adv_zone", type:"boolean", controlname:"cbIntProtSet_WebDAV_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[219] = {fieldname:"internet_protocol_WebDAV_adv_auto", type:"boolean", controlname:"cbIntProtSet_WebDAV_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[220] = {fieldname:"internet_protocol_WebDAV_adv_UTC", type:"boolean", controlname:"cbIntProtSet_WebDAV_adv_UTC", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[221] = {fieldname:"internet_protocol_WebDAV_adv_list", type:"decimal", controlname:"inptIntProtSet_WebDAV_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "WebDAV"};
+            GInternetProtocolSetRegistryList[222] = {fieldname:"internet_protocol_WebDAV_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_WebDAV_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "WebDAV"};
+            GInternetProtocolSetRegistryList[223] = {fieldname:"internet_protocol_WebDAV_adv_timeout", type:"decimal", controlname:"inptIntProtSet_WebDAV_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "WebDAV"};
+            GInternetProtocolSetRegistryList[224] = {fieldname:"internet_protocol_WebDAV_adv_retries", type:"decimal", controlname:"inptIntProtSet_WebDAV_adv_retries", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "WebDAV"};
+            GInternetProtocolSetRegistryList[225] = {fieldname:"internet_protocol_WebDAV_adv_http_retries", type:"decimal", controlname:"inptIntProtSet_WebDAV_adv_http_retries", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "WebDAV"};
+            GInternetProtocolSetRegistryList[226] = {fieldname:"internet_protocol_WebDAV_proxy_proxy_type", type:"boolean", controlname:"comboIntProtSet_WebDAV_proxy_proxy_type", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[227] = {fieldname:"internet_protocol_WebDAV_proxy_proxy_host", type:"string", controlname:"inptIntProtSet_WebDAV_proxy_proxy_host", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[228] = {fieldname:"internet_protocol_WebDAV_proxy_proxy_port", type:"decimal", controlname:"inptIntProtSet_WebDAV_proxy_proxy_port", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "WebDAV"};
+            GInternetProtocolSetRegistryList[229] = {fieldname:"internet_protocol_WebDAV_proxy_login", type:"string", controlname:"inptIntProtSet_WebDAV_proxy_login", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[230] = {fieldname:"internet_protocol_WebDAV_proxy_password", type:"string", controlname:"inptIntProtSet_WebDAV_proxy_password", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[231] = {fieldname:"internet_protocol_WebDAV_proxy_send_host_command", type:"boolean", controlname:"cbIntProtSet_WebDAV_proxy_send_host_command", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+                                       
+          
+          
+             GInternetProtocolSetRegistryList[232] = {fieldname:"IntProtSet_WebDAV_Version_Group", type:"string", controlname:"", controltype:"ButtonGroup", default: "rbIntProtSet_WebDAV_Security_SSLv2", value: null, ControlAppGroup: "WebDAV",
+             getfunc: function()
+             {
+                return GetCheckedRadiobuttonName( $("#rbIntProtSet_WebDAV_Security_SSLv2"), $("#rbIntProtSet_WebDAV_Security_SSLv2_3"), $("#rbIntProtSet_WebDAV_Security_SSLv3"), $("#rbIntProtSet_WebDAV_Security_TLSv_1_1_2"), null, null ); 
+
+             }, setfunc: function( option )
+             {
+                  SetRadioGroupChecked( option, $("#rbIntProtSet_WebDAV_Security_SSLv2"), $("#rbIntProtSet_WebDAV_Security_SSLv2_3"), $("#rbIntProtSet_WebDAV_Security_SSLv3"), $("#rbIntProtSet_WebDAV_Security_TLSv_1_1_2"), null, null ); 
+             }}; 
+
+            GInternetProtocolSetRegistryList[232] = {fieldname:"internet_protocol_WebDAV_Security_SSH_username_password", type:"boolean", controlname:"cbIntProtSet_WebDAV_Security_SSH_username_password", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[233] = {fieldname:"internet_protocol_WebDAV_Security_SSH_keyboard", type:"boolean", controlname:"cbIntProtSet_WebDAV_Security_SSH_keyboard", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[234] = {fieldname:"internet_protocol_WebDAV_Security_SSH_certificate", type:"boolean", controlname:"cbIntProtSet_WebDAV_Security_SSH_certificate", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[235] = {fieldname:"internet_protocol_WebDAV_security_CertificateComboIndex", type:"number", controlname:"comboIntProtSet_WebDAV_security_Certificate", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[236] = {fieldname:"internet_protocol_WebDAV_security_CertificatePassword", type:"string", controlname:"inptIntProtSet_WebDAV_security_CertificatePassword", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[237] = {fieldname:"internet_protocol_WebDAV_security_nopassword", type:"boolean", controlname:"cbIntProtSet_WebDAV_security_nopassword", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[238] = {fieldname:"internet_protocol_WebDAV_certificates_certificates", type:"string", controlname:"inptIntProtSet_WebDAV_certificates_certificates", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[239] = {fieldname:"internet_protocol_WebDAV_certificates_certname_forreference", type:"string", controlname:"inptIntProtSet_WebDAV_certificates_certname_forreference", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[240] = {fieldname:"internet_protocol_WebDAV_certificates_private_keyfile", type:"string", controlname:"inptIntProtSet_WebDAV_certificates_private_keyfile", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+            GInternetProtocolSetRegistryList[241] = {fieldname:"internet_protocol_WebDAV_certificates_public_keyfile", type:"string", controlname:"inptIntProtSet_WebDAV_certificates_public_keyfile", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "WebDAV"}; 
+                                       
+ 
+
+
+            GInternetProtocolSetRegistryList[242] = {fieldname:"internet_protocol_RSync_LibraryComboIndex", type:"number", controlname:"jqxLibraryCombo", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[243] = {fieldname:"internet_protocol_Rsync_url", type:"string", controlname:"inptIntProtSet_Rsync_url", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[244] = {fieldname:"internet_protocol_Rsync_port_number", type:"decimal", controlname:"inptIntProtSet_Rsync_port_number", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
+            GInternetProtocolSetRegistryList[245] = {fieldname:"internet_protocol_Rsync_InternetFolder", type:"string", controlname:"inptInternetFolder", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[246] = {fieldname:"internet_protocol_Rsync_login", type:"string", controlname:"inptIntProtSet_Rsync_login", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[247] = {fieldname:"internet_protocol_Rsync_AccountOpt", type:"string", controlname:"inptAccountOpt", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[248] = {fieldname:"internet_protocol_Rsync_save_user_id", type:"boolean", controlname:"cbIntProtSet_Rsync_save_user_id", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[249] = {fieldname:"internet_protocol_Rsync_save_password", type:"boolean", controlname:"cbIntProtSet_Rsync_save_password", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[250] = {fieldname:"internet_protocol_Rsync_allow_ipv6", type:"boolean", controlname:"cbIntProtSet_Rsync_allow_ipv6", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[251] = {fieldname:"internet_protocol_Rsync_adv_CharsetComboIndex", type:"number", controlname:"comboIntProtSet_Rsync_adv_Charset", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[252] = {fieldname:"internet_protocol_Rsync_adv_replace_characters", type:"boolean", controlname:"cbIntProtSet_Rsync_adv_replace_characters", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[253] = {fieldname:"internet_protocol_Rsync_adv_TimestampsForUploadsComboIndex", type:"number", controlname:"comboIntProtSet_Rsync_adv_TimestampsForUploads", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[254] = {fieldname:"internet_protocol_Rsync_adv_zone", type:"boolean", controlname:"cbIntProtSet_Rsync_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[255] = {fieldname:"internet_protocol_Rsync_adv_auto", type:"boolean", controlname:"cbIntProtSet_Rsync_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[256] = {fieldname:"internet_protocol_Rsync_adv_UTC", type:"boolean", controlname:"cbIntProtSet_Rsync_adv_UTC", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[257] = {fieldname:"internet_protocol_Rsync_adv_list", type:"decimal", controlname:"inptIntProtSet_Rsync_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
+            GInternetProtocolSetRegistryList[258] = {fieldname:"internet_protocol_Rsync_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_Rsync_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
+            GInternetProtocolSetRegistryList[259] = {fieldname:"internet_protocol_Rsync_adv_timeout", type:"decimal", controlname:"inptIntProtSet_Rsync_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
+            GInternetProtocolSetRegistryList[260] = {fieldname:"internet_protocol_Rsync_adv_retries", type:"decimal", controlname:"inptIntProtSet_Rsync_adv_retries", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
+            GInternetProtocolSetRegistryList[261] = {fieldname:"internet_protocol_Rsync_adv_http_retries", type:"decimal", controlname:"inptIntProtSet_Rsync_adv_http_retries", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
+            GInternetProtocolSetRegistryList[262] = {fieldname:"internet_protocol_Rsync_proxy_proxy_typeComboIndex", type:"number", controlname:"comboIntProtSet_Rsync_proxy_proxy_type", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[263] = {fieldname:"internet_protocol_Rsync_proxy_proxy_host", type:"string", controlname:"inptIntProtSet_Rsync_proxy_proxy_host", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[264] = {fieldname:"internet_protocol_Rsync_proxy_proxy_port", type:"decimal", controlname:"inptIntProtSet_Rsync_proxy_proxy_port", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
+            GInternetProtocolSetRegistryList[265] = {fieldname:"internet_protocol_Rsync_proxy_login", type:"string", controlname:"inptIntProtSet_Rsync_proxy_login", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[266] = {fieldname:"internet_protocol_Rsync_proxy_password", type:"string", controlname:"inptIntProtSet_Rsync_proxy_password", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[267] = {fieldname:"internet_protocol_Rsync_proxy_send_host_command", type:"boolean", controlname:"cbIntProtSet_Rsync_proxy_send_host_command", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+                                                                                      
+            GInternetProtocolSetRegistryList[268] = {fieldname:"internet_protocol_Rsync_Security_SSH_username_password", type:"boolean", controlname:"cbIntProtSet_Rsync_Security_SSH_username_password", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[269] = {fieldname:"internet_protocol_Rsync_Security_SSH_keyboard", type:"boolean", controlname:"cbIntProtSet_Rsync_Security_SSH_keyboard", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[270] = {fieldname:"internet_protocol_Rsync_Security_SSH_certificate", type:"boolean", controlname:"cbIntProtSet_Rsync_Security_SSH_certificate", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[271] = {fieldname:"internet_protocol_Rsync_security_CertificateIndex", type:"number", controlname:"comboIntProtSet_Rsync_security_Certificate", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[272] = {fieldname:"internet_protocol_Rsync_security_CertificatePassword", type:"string", controlname:"inptIntProtSet_Rsync_security_CertificatePassword", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[273] = {fieldname:"internet_protocol_Rsync_security_nopassword", type:"boolean", controlname:"cbIntProtSet_Rsync_security_nopassword", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[274] = {fieldname:"internet_protocol_Rsync_proxy_login", type:"string", controlname:"inptIntProtSet_Rsync_proxy_login", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[275] = {fieldname:"internet_protocol_Rsync_certificates_certificates", type:"string", controlname:"inptIntProtSet_Rsync_certificates_certificates", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[276] = {fieldname:"internet_protocol_Rsync_certificates_certname_forreference", type:"string", controlname:"inptIntProtSet_Rsync_certificates_certname_forreference", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[277] = {fieldname:"internet_protocol_Rsync_certificates_private_keyfile", type:"string", controlname:"inptIntProtSet_Rsync_certificates_private_keyfile", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+            GInternetProtocolSetRegistryList[278] = {fieldname:"internet_protocol_Rsync_certificates_public_keyfile", type:"string", controlname:"inptIntProtSet_Rsync_certificates_public_keyfile", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
+                                              
+ 
+
+
+  
 
 
 /*
