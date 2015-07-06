@@ -10,12 +10,18 @@
                     <div>Folder</div><div><input type="text" id="inptInternetFolder"/></div>
                     <div>Your Account ID is the first word of your Asure endpoint,<br/>Example: is endpoint is test.blob.core.windows.net, then ID = test.</div>
                     <br/><br/>
-                    <div>Account ID( opt. )</div><div><input type="password" id="inptIntProtSet_Asure_account_id"/></div>
+                    <div>Account ID( opt. )</div><div><input type="text" id="inptIntProtSet_Asure_account_id"/></div>
                     <div>Access Key( opt. )</div><div><input type="password" id="inptAccountOpt"/></div>
                     <br/><br/>    
-                    <div>Save Account ID</div><div><div id="cbIntProtSet_Asure_save_user_id"/></div>                                
-                    <div>Save Access Key</div><div><div id="cbIntProtSet_Asure_save_password"/></div>                                
-                    <div>Allow IPV6</div><div><div id="cbIntProtSet_Asure_allow_ipv6"/></div>                    
+
+                    <table style="width:250px">
+                    <tr>
+                      <td><div>Save Account ID</div><div><div id="cbIntProtSet_Asure_save_user_id"/></div></td>  
+                      <td><div>Save Access Key</div><div><div id="cbIntProtSet_Asure_save_password"/></div></td>
+                      <td><div>Allow IPV6</div><div><div id="cbIntProtSet_Asure_allow_ipv6"/></div></td>                       
+                    </tr>  
+                    </table>
+                                                                    
                     <div>Filename Encoding: on right side, put timestamp in file names(to preserve it if server doesn"t support setting file times)</div>
                     <div><div id="cbIntProtSet_Asure_filename_encoding"/></div><br/>                
                 </div>                  
@@ -28,10 +34,17 @@
 
                     <div>Cache Control</div><div><input type="text" id="inptIntProtSet_Asure_adv_cache_control"/></div> 
                     <div>Seconds (0=unspecified )</div>                
-                    <div>Zone</div><div><div id="cbIntProtSet_Asure_adv_zone"/></div> 
-                    <div>UTC Offsets</div><div><div id="cbIntProtSet_Asure_adv_UTC"/></div>     
-                    <div>List</div><div><input type="text" id="inptIntProtSet_Asure_adv_list"/></div>
-                    <div>Upload</div><div><input type="text" id="inptIntProtSet_Asure_adv_upload_min"/></div><div>min</div>   
+                    <br/><br/> 
+                    <table>                        
+                    <tr>
+                      <td><div>Zone</div><div><div id="cbIntProtSet_Asure_adv_zone"/></div></td>  
+                      <td><div>Auto</div><div><div id="cbIntProtSet_Asure_adv_auto"/></div></td>                      
+                      <td class="auto-style_IntProtAdv2" >UTC Offsets List<div><input type="text" id="inptIntProtSet_Asure_adv_list"/></div></td>                       
+                      <td class="auto-style_IntProtAdv1" >Upload (min)<div><input type="text" id="inptIntProtSet_Asure_adv_upload_min"/></div></td>                       
+                    </tr>  
+                    </table>
+
+                      
                     <div>Timeout</div><div><input type="text" id="inptIntProtSet_Asure_adv_timeout"/></div><div>seconds. These are global settings</div>   
                     <div>Retries</div><div><input type="text" id="inptIntProtSet_Asure_adv_retries"/></div>   
                     <div>HTTP Authentication Retries</div><div><input type="text" id="inptIntProtSet_Asure_adv_http_retries"/></div>   

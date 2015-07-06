@@ -13,11 +13,19 @@
                     <div>Port</div><div><input type="text" id="inptIntProtSet_HTTP_port"/></div>
                     <div>Folder</div><div><input type="text" id="inptInternetFolder"/></div>
                     <div>start absolute paths with / (otherwise relative to home dir)</div>
-                    <div>User ID(login):</div><div><input type="text" id="inptIntProtSet_HTTP_login"/></div>               
+                    <div>User ID(login):</div><div><input type="text" id="inptIntProtSet_HTTP_login"/></div>
                     <div>Password</div><div><input type="password" id="inptAccountOpt"/></div>
-                    <div>Save User ID</div><div><div id="cbIntProtSet_HTTP_save_user_id"/></div>                                
-                    <div>Save Password</div><div><div id="cbIntProtSet_HTTP_save_password"/></div>                                
-                    <div>Allow IPV6</div><div><div id="cbIntProtSet_HTTP_allow_ipv6"/></div>                    
+                    
+
+                    <table style="width:250px">
+                    <tr>
+                      <td><div>Save User ID</div><div><div id="cbIntProtSet_HTTP_save_user_id"/></div></td>  
+                      <td><div>Save Password</div><div><div id="cbIntProtSet_HTTP_save_password"/></div></td>
+                      <td><div>Allow IPV6</div><div><div id="cbIntProtSet_HTTP_allow_ipv6"/></div></td>                       
+                    </tr>  
+                    </table>
+                                                                                                                            
+                                        
                     <div>Filename Encoding: on right side, put timestamp in file names(to preserve it if server doesn"t support setting file times)</div>
                     <div><div id="cbIntProtSet_HTTP_filename_encoding"/></div><br/>                                                                                
                     <br/><br/>  
@@ -40,13 +48,20 @@
                     <!--Advanced-->
                     <div>Character Set:</div><div id ="comboIntProtSet_HTTP_adv_Charset" style="float: left;"></div><br/><br/>                
                     <div>Replace characters...</div><div><div id="cbIntProtSet_HTTP_adv_replace_characters"/></div>
-                                                                                                                                 
-                                    
-                    <div>Zone</div><div><div id="cbIntProtSet_HTTP_adv_zone"/></div> 
-                    <div>Auto</div><div><div id="cbIntProtSet_HTTP_adv_auto"/></div>       
-                    <div>UTC Offsets</div><div><div id="cbIntProtSet_HTTP_adv_UTC"/></div>     
-                    <div>List</div><div><input type="text" id="inptIntProtSet_HTTP_adv_list"/></div>
-                    <div>Upload</div><div><input type="text" id="inptIntProtSet_HTTP_adv_upload_min"/></div><div>min</div>   
+                                                                                                                                                                                         
+
+                    <br/><br/> 
+                    <table>                        
+                    <tr>
+                      <td><div>Zone</div><div><div id="cbIntProtSet_HTTP_adv_zone"/></div></td>  
+                      <td><div>Auto</div><div><div id="cbIntProtSet_HTTP_adv_auto"/></div></td>                      
+                      <td class="auto-style_IntProtAdv2" >UTC Offsets List<div><input type="text" id="inptIntProtSet_HTTP_adv_list"/></div></td>                       
+                      <td class="auto-style_IntProtAdv1" >Upload (min)<div><input type="text" id="inptIntProtSet_HTTP_adv_upload_min"/></div></td>                       
+                    </tr>  
+                    </table>
+
+
+
                     <div>Timeout</div><div><input type="text" id="inptIntProtSet_HTTP_adv_timeout"/></div><div>seconds. These are global settings</div>   
                     <div>Retries</div><div><input type="text" id="inptIntProtSet_HTTP_adv_retries"/></div>   
                     <div>HTTP Authentication Retries</div><div><input type="text" id="inptIntProtSet_HTTP_adv_http_retries"/></div>   

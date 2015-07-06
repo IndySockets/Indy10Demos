@@ -10,6 +10,7 @@
     var GLeftOrRight = "";
     var GProtocolName = "";
 
+      
     var InternetProtSettingsTabsHTML_Cloud = 
     '<div id="jqxInternetProtSettingsTabs">'+
                 '<ul>'+
@@ -36,13 +37,13 @@
 function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, LeftOrRight, ProtocolName )
 {
 
-      
+      GProtocolName = ProtocolName;
      if( GInternetProtSettingsTabs != null)  
       {
          GInternetProtSettingsTabs.jqxTabs( 'destroy' ); 
          GInternetProtSettingsTabs = null;
-      }  
-           
+      }
+
       /*
       ftpGUIlikeFTP          =1;+
       ftpGUIlikeSFTP         =2;
@@ -51,13 +52,17 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
       ftpGUIlikeAzure        =5;+
       ftpGUIlikeAmazonGlacier=6;
       ftpGUIlikeGoogleDrive  =7;+
-      ftpGUIlikeRSync        =8;
+      ftpGUIlikeRSync        =8;+
       ftpGUIlikeHTTP         =9;+
       ftpGUIlikeMTP          =10;
       */ 
-      if( ProtocolName == 'FTP' || ProtocolName == 'SSH')
-      {
 
+
+    
+
+      if( GetBaseProtocolName( ProtocolName ) == 'FTP' )
+      {
+          
           $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_FTP );  
           GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });   
           var LibraryComboSource = ['1(default)', '2', '3' ];
@@ -90,7 +95,7 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           $("#comboIntProtSet_FTP_adv_TimestampsForUploads").jqxComboBox({ source: adv_FTP_TimestampsForUploadsComboSource, selectedIndex: 0, width: '250', height: '25px'});
           $("#cbIntProtSet_FTP_adv_zone").jqxCheckBox({ width: 120, height: 25});
           $("#cbIntProtSet_FTP_adv_auto").jqxCheckBox({ width: 120, height: 25});
-          $("#cbIntProtSet_FTP_adv_UTC").jqxCheckBox({ width: 120, height: 25});
+       //   $("#cbIntProtSet_FTP_adv_UTC").jqxCheckBox({ width: 120, height: 25});
           $("#inptIntProtSet_FTP_adv_list").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
           $("#inptIntProtSet_FTP_adv_upload_min").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
           $("#inptIntProtSet_FTP_adv_timeout").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
@@ -140,8 +145,78 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           $("#inptIntProtSet_FTP_certificates_private_keyfile").jqxInput({ width: 350, height: 25 });
           $("#inptIntProtSet_FTP_certificates_public_keyfile").jqxInput({ width: 350, height: 25 });
       }
-      else if( ProtocolName == 'HTTP' )
+      else if( GetBaseProtocolName( ProtocolName ) == 'SSH' )
       {
+          
+          $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_SFTP );  
+          GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });   
+          var LibraryComboSource = ['1(SFTP)', '2(SCP )', '3(Pure SSH)' ];
+          $("#jqxLibraryCombo").jqxComboBox({ source: LibraryComboSource, selectedIndex: 0, width: '100', height: '25px'});
+
+          $("#inptIntProtSetSSH_url").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_SSH_port").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+          $("#inptInternetFolder").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_SSH_login").jqxInput({ width: 350, height: 25 });          
+          $("#inptAccountOpt").jqxPasswordInput({ width: 350, height: 25 });
+
+
+          $("#cbIntProtSet_SSH_save_user_id").jqxCheckBox({ width: 120, height: 25});          
+          $("#cbIntProtSet_SSH_save_password").jqxCheckBox({ width: 120, height: 25});          
+          $("#cbIntProtSet_SSH_allow_ipv6").jqxCheckBox({ width: 120, height: 25});          
+
+
+          $("#cbIntProtSet_SSH_auto_resume_transfer").jqxCheckBox({ width: 120, height: 25});                     
+
+                              
+          var adv_CharsetComboSource = ['Automatic', 'Unicode(UTF-8)', 'Windows ANSI' ];
+          
+          $("#comboIntProtSet_SSH_adv_Charset").jqxComboBox({ source: adv_CharsetComboSource, selectedIndex: 0, width: '250', height: '25px'});
+
+          $("#cbIntProtSet_SSH_adv_replace_characters").jqxCheckBox({ width: 120, height: 25});                     
+          $("#cbIntProtSet_SSH_adv_recursive_listing").jqxCheckBox({ width: 120, height: 25});                               
+          $("#cbIntProtSet_SSH_adv_verify_destination_file").jqxCheckBox({ width: 120, height: 25});                     
+
+
+          $("#cbIntProtSet_SSH_adv_zone").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_SSH_adv_auto").jqxCheckBox({ width: 120, height: 25});
+       
+          $("#inptIntProtSet_SSH_adv_list").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+          $("#inptIntProtSet_SSH_adv_upload_min").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+          $("#inptIntProtSet_SSH_adv_timeout").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+          $("#inptIntProtSet_SSH_adv_retries").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+          $("#inptIntProtSet_SSH_adv_http_retries").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });   
+
+          var SSH_proxy_proxy_typeComboSource = ['No Proxy(default)', 'USER user@hostname', 'SITE(with logon)', 'OPEN', 'USER/PASS combined', 'Transparent'];
+          $("#comboIntProtSet_SSH_proxy_proxy_type").jqxComboBox({ source: SSH_proxy_proxy_typeComboSource, selectedIndex: 0, width: '250', height: '25px'});
+          $("#inptIntProtSet_SSH_proxy_proxy_host").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_SSH_proxy_proxy_port").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+
+          $("#inptIntProtSet_SSH_proxy_user_id").jqxInput({ width: 350, height: 25 });          
+          $("#inptIntProtSet_SSH_proxy_password").jqxPasswordInput({ width: 350, height: 25 });
+          $("#cbIntProtSet_SSH_proxy_send_host_command").jqxCheckBox({ width: 120, height: 25});    
+
+
+          $("#btnIntProtSet_SSH_Security_Advanced_SSH").jqxButton({ template: "info" }); 
+
+          $("#cbIntProtSet_SSH_Security_SSH_username_password").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_SSH_Security_SSH_keyboard").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_SSH_Security_SSH_certificate").jqxCheckBox({ width: 120, height: 25});
+
+
+          var SSH_proxy_security_CertificateComboSource = ['none'];
+          $("#comboIntProtSet_SSH_security_Certificate").jqxComboBox({ source: SSH_proxy_security_CertificateComboSource, selectedIndex: 0, width: '250', height: '25px'});
+          $("#inptIntProtSet_SSH_security_CertificatePassword").jqxPasswordInput({ width: 350, height: 25 }); 
+          $("#cbIntProtSet_SSH_security_nopassword").jqxCheckBox({ width: 120, height: 25});
+
+
+          $("#inptIntProtSet_SSH_certificates_certificates").jqxInput({ width: 350, height: 150 });
+          $("#inptIntProtSet_SSH_certificates_certname_forreference").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_SSH_certificates_private_keyfile").jqxInput({ width: 350, height: 25 });
+          $("#inptIntProtSet_SSH_certificates_public_keyfile").jqxInput({ width: 350, height: 25 });
+      }
+      else if( GetBaseProtocolName( ProtocolName ) == 'HTTP' )
+      {
+
           $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_HTTP );  
           GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });   
 
@@ -177,7 +252,7 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           
           $("#cbIntProtSet_HTTP_adv_zone").jqxCheckBox({ width: 120, height: 25});    
           $("#cbIntProtSet_HTTP_adv_auto").jqxCheckBox({ width: 120, height: 25});    
-          $("#cbIntProtSet_HTTP_adv_UTC").jqxCheckBox({ width: 120, height: 25});    
+        
           $("#inptIntProtSet_HTTP_adv_list").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });
           $("#inptIntProtSet_HTTP_adv_upload_min").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });
                     
@@ -220,8 +295,9 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
 
 
       }
-      else if( ProtocolName == 'Google Drive' )
+      else if( GetBaseProtocolName( ProtocolName ) == 'Google Drive' ) 
       {
+          
           $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_GoogleDrive );  
           
           GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });   
@@ -249,7 +325,7 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
 
           $("#cbIntProtSet_GDrive_adv_zone").jqxCheckBox({ width: 120, height: 25});    
           $("#cbIntProtSet_GDrive_adv_auto").jqxCheckBox({ width: 120, height: 25});    
-          $("#cbIntProtSet_GDrive_adv_UTC").jqxCheckBox({ width: 120, height: 25});    
+          
           $("#inptIntProtSet_GDrive_adv_list").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });
           $("#inptIntProtSet_GDrive_adv_upload_min").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });
                     
@@ -286,7 +362,12 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           $("#rbIntProtSet_GDrive_GDocs_dpres_txt").jqxRadioButton({ groupName: 'IntProtSet_GDrive_FormatDownldPres_Group', rtl: false}); 
 
            
+          $("#rbIntProtSet_GDrive_GDocs_ddraw_jpg").jqxRadioButton({ groupName: 'IntProtSet_GDrive_FormatDownldDraw_Group', rtl: false}); 
+          $("#rbIntProtSet_GDrive_GDocs_ddraw_png").jqxRadioButton({ groupName: 'IntProtSet_GDrive_FormatDownldDraw_Group', rtl: false}); 
+          $("#rbIntProtSet_GDrive_GDocs_ddraw_pdf").jqxRadioButton({ groupName: 'IntProtSet_GDrive_FormatDownldDraw_Group', rtl: false}); 
+          $("#rbIntProtSet_GDrive_GDocs_ddraw_xml").jqxRadioButton({ groupName: 'IntProtSet_GDrive_FormatDownldDraw_Group', rtl: false}); 
 
+          
           $("#cbIntProtSet_GDrive_GDocs_ftconvert_csv").jqxCheckBox({ width: 120, height: 25});  
           $("#cbIntProtSet_GDrive_GDocs_ftconvert_html").jqxCheckBox({ width: 120, height: 25});   
           $("#cbIntProtSet_GDrive_GDocs_ftconvert_pdf").jqxCheckBox({ width: 120, height: 25});   
@@ -305,8 +386,9 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           
 
        } 
-       else if( ProtocolName == 'Amazon S3' )
+       else if( GetBaseProtocolName( ProtocolName ) == 'Amazon S3' )
        {          
+          
           $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_AmazonS3 );            
           GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });   
        
@@ -333,7 +415,7 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           $("#cbIntProtSet_AmazonS3_recursive_listing").jqxCheckBox({ width: 120, height: 25});    
           $("#cbIntProtSet_AmazonS3_use_server_side_encryption").jqxCheckBox({ width: 120, height: 25});    
           $("#cbIntProtSet_AmazonS3_adv_zone").jqxCheckBox({ width: 120, height: 25});    
-          $("#cbIntProtSet_AmazonS3_adv_UTC").jqxCheckBox({ width: 120, height: 25});    
+          $("#cbIntProtSet_AmazonS3_adv_auto").jqxCheckBox({ width: 120, height: 25});    
 
             
           $("#inptIntProtSet_AmazonS3_adv_list").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });
@@ -376,10 +458,9 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
 
                     
        }
-       else if( ProtocolName == 'Asure' )  
+       else if( GetBaseProtocolName( ProtocolName ) == 'Asure' ) 
        {
-
-
+        
          $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_Asure );  
          GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });   
      
@@ -402,7 +483,7 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           $("#cbIntProtSet_Asure_adv_recursive_listing").jqxCheckBox({ width: 120, height: 25});
           $("#inptIntProtSet_Asure_adv_cache_control").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
           $("#cbIntProtSet_Asure_adv_zone").jqxCheckBox({ width: 120, height: 25});
-          $("#cbIntProtSet_Asure_adv_UTC").jqxCheckBox({ width: 120, height: 25});
+          $("#cbIntProtSet_Asure_adv_auto").jqxCheckBox({ width: 120, height: 25});
           $("#inptIntProtSet_Asure_adv_list").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
           $("#inptIntProtSet_Asure_adv_upload_min").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
           $("#inptIntProtSet_Asure_adv_timeout").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
@@ -439,7 +520,7 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           $("#cbIntProtSet_Asure_security_nopassword").jqxCheckBox({ width: 120, height: 25});                    
                                                                                                                           
        }
-       else if( ProtocolName == 'WebDAV' )
+       else if( GetBaseProtocolName( ProtocolName ) == 'WebDAV' )
        {
           $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_WebDAV );  
           GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });   
@@ -474,7 +555,7 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           $("#comboIntProtSet_WebDAV_adv_TimestampsForUploads").jqxComboBox({ source: WebDAV_adv_TimestampsComboSource, selectedIndex: 0, width: '100', height: '25px'});
           $("#cbIntProtSet_WebDAV_adv_zone").jqxCheckBox({ width: 120, height: 25});
           $("#cbIntProtSet_WebDAV_adv_auto").jqxCheckBox({ width: 120, height: 25});
-          $("#cbIntProtSet_WebDAV_adv_UTC").jqxCheckBox({ width: 120, height: 25});
+     
 
 
   
@@ -521,9 +602,10 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           $("#inptIntProtSet_WebDAV_certificates_private_keyfile").jqxInput({ width: 350, height: 25 });
           $("#inptIntProtSet_WebDAV_certificates_public_keyfile").jqxInput({ width: 350, height: 25 });
        }
-       else if( ProtocolName == 'RSync' )
+       else if( GetBaseProtocolName( ProtocolName ) == 'RSync' )
        {
-           
+
+                    
           $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_RSync );  
           GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });        
           var LibraryComboSource = ['1 (SSH)', '2 (Direct)'];
@@ -549,7 +631,7 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           $("#comboIntProtSet_Rsync_adv_TimestampsForUploads").jqxComboBox({ source: Rsync_adv_TimestampsComboSource, selectedIndex: 0, width: '100', height: '25px'});
           $("#cbIntProtSet_Rsync_adv_zone").jqxCheckBox({ width: 120, height: 25});
           $("#cbIntProtSet_Rsync_adv_auto").jqxCheckBox({ width: 120, height: 25});
-          $("#cbIntProtSet_Rsync_adv_UTC").jqxCheckBox({ width: 120, height: 25});
+      
 
 
   
@@ -596,7 +678,58 @@ function OnProtocolComboItem( ProfileName, InternetProtocolSetRegistryList, Left
           
 
        }
-        LoadRegistryListToControls( GCurrentInternetProtocolSetRegistryList, ProtocolName );                                                                     
+       else if( GetBaseProtocolName( ProtocolName ) == 'Glacier' )
+       {
+
+            $("#jqxInternetProtSettingsTabs_div").html( InternetProtSettingsTabsHTML_Glacier );  
+            GInternetProtSettingsTabs = $('#jqxInternetProtSettingsTabs').jqxTabs({ width: GInternetProtSettingsTabControlWidth, height: GInternetProtSettingsTabControlHeight });        
+                
+            $("#inptIntProtSet_Glacier_Vault").jqxInput({ width: 350, height: 25 });
+  
+
+            var Glacier_RegionComboSource = ['US East (Northern Virginia)', 'US West (Oregon)', 'US West (Northern California)', 
+              'EU (Ireland)', 'Asia Pacific (Tokyo)' ];
+            $("#comboIntProtSet_Glacier_Region").jqxComboBox({ source: Glacier_RegionComboSource, selectedIndex: 0, width: '100', height: '25px'});                    
+            $("#inptInternetFolder").jqxInput({ width: 350, height: 25 });
+            $("#inptAccountOpt").jqxPasswordInput({ width: 350, height: 25 });
+
+            $("#cbIntProtSet_Glacier_save_access_id").jqxCheckBox({ width: 120, height: 25});
+            $("#cbIntProtSet_Glacier_save_password").jqxCheckBox({ width: 120, height: 25});
+            $("#cbIntProtSet_Glacier_allow_ipv6").jqxCheckBox({ width: 120, height: 25});
+
+
+            $("#cbIntProtSet_Glacier_filename_encoding").jqxCheckBox({ width: 120, height: 25});                    
+            var Glacier_adv_CharsetComboSource = ['Automatic', 'Unicode(UTF-8)', 'Windows ANSI' ];
+            $("#comboIntProtSet_Glacier_adv_Charset").jqxComboBox({ source: Glacier_adv_CharsetComboSource, selectedIndex: 0, width: '100', height: '25px'});
+            $("#cbIntProtSet_Glacier_adv_replace_characters").jqxCheckBox({ width: 120, height: 25});                    
+            $("#cbIntProtSet_Glacier_recursive_listing").jqxCheckBox({ width: 120, height: 25});                                
+            $("#cbIntProtSet_Glacier_adv_zone").jqxCheckBox({ width: 120, height: 25});                    
+            $("#cbIntProtSet_Glacier_adv_auto").jqxCheckBox({ width: 120, height: 25});                                            
+            $("#inptIntProtSet_Glacier_adv_list").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });             
+            $("#inptIntProtSet_Glacier_adv_upload_min").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });             
+            $("#inptIntProtSet_Glacier_adv_timeout").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });             
+            $("#inptIntProtSet_Glacier_adv_retries").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+            $("#inptIntProtSet_Glacier_adv_http_retries").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false });                                                                                   
+            var Glacier_proxy_proxy_typeComboSource = ['No Proxy(default)', 'USER user@hostname', 'SITE(with logon)', 'OPEN', 'USER/PASS combined', 'Transparent'];
+            $("#comboIntProtSet_Glacier_proxy_proxy_type").jqxComboBox({ source: Glacier_proxy_proxy_typeComboSource, selectedIndex: 0, width: '250', height: '25px'});           
+            $("#inptIntProtSet_Glacier_proxy_proxy_host").jqxInput({ width: 350, height: 25 });
+            $("#inptIntProtSet_Glacier_proxy_proxy_port").jqxFormattedInput({ width: 50, height: 25, radix: "decimal", value: "0", min: "0", max: "10000", spinButtons: false }); 
+            $("#inptIntProtSet_Glacier_proxy_login").jqxInput({ width: 350, height: 25 });
+            $("#inptIntProtSet_Glacier_proxy_password").jqxPasswordInput({ width: 350, height: 25 });
+            $("#cbIntProtSet_Glacier_proxy_send_host_command").jqxCheckBox({ width: 120, height: 25});                    
+            $("#rbIntProtSet_Glacier_Security_None").jqxRadioButton({ groupName: 'IntProtSet_Glacier_Security_Mode_Group', rtl: false});                     
+            $("#rbIntProtSet_Glacier_Security_TLS").jqxRadioButton({ groupName: 'IntProtSet_Glacier_Security_Mode_Group', rtl: false}); 
+            $("#btnIntProtSet_Glacier_Security_Advanced_SSH").jqxButton({ template: "info" }); 
+            $("#cbIntProtSet_Glacier_Security_SSH_username_password").jqxCheckBox({ width: 350, height: 25 });
+            $("#cbIntProtSet_Glacier_Security_SSH_keyboard").jqxCheckBox({ width: 120, height: 25});                    
+            $("#cbIntProtSet_Glacier_Security_SSH_certificate").jqxCheckBox({ width: 120, height: 25});                    
+            var Glacier_security_CertificateComboSource = ['none'];
+            $("#comboIntProtSet_Glacier_security_Certificate").jqxComboBox({ source: Glacier_security_CertificateComboSource, selectedIndex: 0, width: '250', height: '25px'});            
+            $("#inptIntProtSet_Glacier_security_CertificatePassword").jqxPasswordInput({ width: 350, height: 25 });            
+            $("#cbIntProtSet_Glacier_security_nopassword").jqxCheckBox({ width: 350, height: 25 });            
+        }   
+
+       LoadRegistryListToControls( GCurrentInternetProtocolSetRegistryList, GetBaseProtocolName( ProtocolName ) );                                                                     
 
         if( GInternetProtSettingsTabs != null)   
         {
@@ -659,7 +792,7 @@ function InitProtocolSettingsForm( ProfileName, InternetProtocolSetRegistryList,
                   
                }
 
-               ControlValuesToRegistryList(GCurrentInternetProtocolSetRegistryList, $("#jqxProtocolCombo").jqxComboBox('val') );
+               ControlValuesToRegistryList(GCurrentInternetProtocolSetRegistryList, GetBaseProtocolName( GProtocolName ) );
 
                
                $('#jqxwInternetProtSettingsDlg').jqxWindow('close');
@@ -669,7 +802,7 @@ function InitProtocolSettingsForm( ProfileName, InternetProtocolSetRegistryList,
 // Protocols combo
 
             var ProtocolComboSource = ['FTP', 'SSH', 'WebDAV', 'Amazon S3', 'HTTP', 'Asure', 'RSync', 'Glacier', 'Box', 'Google Drive',
-              'DropBox',  'Rackspace', 'OneDrive', 'SygarSync', 'MTP', 'Email' ];
+              'DropBox',  'Rackspace', 'OneDrive', 'SugarSync', 'Amazon Cloud Drive', 'MTP', 'Email' ];
             // Create a jqxComboBox
             $("#jqxProtocolCombo").jqxComboBox({ source: ProtocolComboSource, selectedIndex: 0, width: '250', height: '25px'});
 
@@ -702,7 +835,7 @@ function InitProtocolSettingsForm( ProfileName, InternetProtocolSetRegistryList,
       { 
        
           $("#jqxProtocolCombo").jqxComboBox( 'val', GProtocolName );
-          OnProtocolComboItem( GSelectedProfileName, GCurrentInternetProtocolSetRegistryList, GLeftOrRight, GProtocolName );            
+          //OnProtocolComboItem( GSelectedProfileName, GCurrentInternetProtocolSetRegistryList, GLeftOrRight, GetBaseProtocolName( GProtocolName ) );            
 
        }); 
 

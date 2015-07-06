@@ -14,9 +14,16 @@
                     <div>Folder</div><div><input type="text" id="inptInternetFolder"/></div><br/>
                     <div>User ID(login):</div><div><input type="text" id="inptIntProtSet_WebDAV_login"/></div><br/>               
                     <div>Password</div><div><input type="password" id="inptAccountOpt"/></div><br/>
-                    <div>Save User ID</div><div><div id="cbIntProtSet_WebDAV_save_user_id"/></div><br/>                                
-                    <div>Save Password</div><div><div id="cbIntProtSet_WebDAV_save_password"/></div><br/>                                
-                    <div>Allow IPV6</div><div><div id="cbIntProtSet_WebDAV_allow_ipv6"/></div><br/>                    
+
+                                                                                                                                
+                    <table style="width:250px">
+                    <tr>
+                      <td><div>Save User ID</div><div><div id="cbIntProtSet_WebDAV_save_user_id"/></div><br/></td>  
+                      <td><div>Save Password</div><div><div id="cbIntProtSet_WebDAV_save_password"/></div><br/></td>
+                      <td><div>Allow IPV6</div><div><div id="cbIntProtSet_WebDAV_allow_ipv6"/></div><br/></td>                       
+                    </tr>  
+                    </table>
+
                     <div>Filename Encoding: on right side, put timestamp in file names(to preserve it if server doesn"t support setting file times)</div>
                     <div><div id="cbIntProtSet_WebDAV_filename_encoding"/></div><br/>                                                                                
                     <br/><br/>                                          
@@ -29,14 +36,20 @@
                     <div>WebDAV Strategy:</div><div id ="comboIntProtSet_WebDAV_adv_strategyCombo" style="float: left;"></div><br/><br/>
 
                     <div>Use DisplayName from WebDAV( Alias Handling )</div><div><div id="cbIntProtSet_WebDAV_adv_use_displayname"/></div>
-                    <div>Use Expect: 100-continue</div><div id ="comboIntProtSet_WebDAV_adv_use_expect_100_continue" style="float: left;"></div><br/><br/>                                                                                                             
-                    
+                    <div>Use Expect: 100-continue</div><div id ="comboIntProtSet_WebDAV_adv_use_expect_100_continue" style="float: left;"></div><br/><br/>                                                                                                                                 
                     <div>Timestamps For Uploads:</div><div id ="comboIntProtSet_WebDAV_adv_TimestampsForUploads" style="float: left;"></div><br/><br/>                
-                    <div>Zone</div><div><div id="cbIntProtSet_WebDAV_adv_zone"/></div> 
-                    <div>Auto</div><div><div id="cbIntProtSet_WebDAV_adv_auto"/></div>       
-                    <div>UTC Offsets</div><div><div id="cbIntProtSet_WebDAV_adv_UTC"/></div>     
-                    <div>List</div><div><input type="text" id="inptIntProtSet_WebDAV_adv_list"/></div>
-                    <div>Upload</div><div><input type="text" id="inptIntProtSet_WebDAV_adv_upload_min"/></div><div>min</div>   
+
+                    
+                    <table>                        
+                    <tr>
+                      <td><div>Zone</div><div><div id="cbIntProtSet_WebDAV_adv_zone"/></div></td>  
+                      <td><div>Auto</div><div><div id="cbIntProtSet_WebDAV_adv_auto"/></div></td>                      
+                      <td class="auto-style_IntProtAdv2" >UTC Offsets List<div><input type="text" id="inptIntProtSet_WebDAV_adv_list"/></div></td>                       
+                      <td class="auto-style_IntProtAdv1" >Upload (min)<div><input type="text" id="inptIntProtSet_WebDAV_adv_upload_min"/></div></td>                       
+                    </tr>  
+                    </table>
+
+
                     <div>Timeout</div><div><input type="text" id="inptIntProtSet_WebDAV_adv_timeout"/></div><div>seconds. These are global settings</div>   
                     <div>Retries</div><div><input type="text" id="inptIntProtSet_WebDAV_adv_retries"/></div>   
                     <div>HTTP Authentication Retries</div><div><input type="text" id="inptIntProtSet_WebDAV_adv_http_retries"/></div>   

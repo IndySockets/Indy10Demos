@@ -1,4 +1,5 @@
             var MainFormHTML = "<input type=\"button\" value=\"Test\" id=\"Test_btn\" />"+
+            "<input type=\"button\" value=\"Test\" id=\"Test_btn1\" />"+
     "<div id=\"jqxgrid\"> </div>"; 
 
 
@@ -568,11 +569,13 @@ function InitMainForm()
                         
             GridDataAdapter.dataBind();
 
+      $('#Test_btn1').jqxButton({});
+      
       $('#Test_btn').jqxButton({});
       
       $('#Test_btn').click(function () 
       {
-          
+        $('#Test_btn1').jqxButton({disabled : true});    
          
                 
                  

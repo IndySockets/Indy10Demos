@@ -52,7 +52,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
 {
 
              IntProtSetSource.url = "internet_settings_" + ProfileName +"_" + LeftOrRight+ "_" + ProtocolName; 
-             if( ProtocolName == "FTP" || ProtocolName == 'SSH' )
+             if( GetBaseProtocolName( ProtocolName ) == "FTP" )
              {
                 IntProtSetSource.datafields = [
                         { name: 'Name', type: 'string' },
@@ -78,7 +78,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                         { name: 'internet_protocol_FTP_adv_TimestampsForUploadsComboIndex', map: 'internet_protocol_FTP_adv_TimestampsForUploadsComboIndex', type: 'number' },
                         { name: 'internet_protocol_FTP_adv_zone', map: 'internet_protocol_FTP_adv_zone', type: 'boolean' },
                         { name: 'internet_protocol_FTP_adv_auto', map: 'internet_protocol_FTP_adv_auto', type: 'boolean' },
-                        { name: 'internet_protocol_FTP_adv_UTC', map: 'internet_protocol_FTP_adv_UTC', type: 'boolean' },
+                        //{ name: 'internet_protocol_FTP_adv_UTC', map: 'internet_protocol_FTP_adv_UTC', type: 'boolean' },
                         { name: 'internet_protocol_FTP_adv_list', map: 'internet_protocol_FTP_adv_list', type: 'float' },
                         { name: 'internet_protocol_FTP_adv_upload_min', map: 'internet_protocol_FTP_adv_upload_min', type: 'float' },
                         { name: 'internet_protocol_FTP_adv_timeout', map: 'internet_protocol_FTP_adv_timeout', type: 'number' },
@@ -106,7 +106,54 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
             
                         ] ;
                 }   
-                else if( ProtocolName == 'Google Drive' )
+                if( GetBaseProtocolName( ProtocolName ) == "SSH" )
+                {
+                   IntProtSetSource.datafields = [
+                        { name: 'Name', type: 'string' },
+                        { name: 'internet_protocol_SSH_LibraryComboIndex', map: 'internet_protocol_SSH_LibraryComboIndex', type: 'number' },  
+                        { name: 'internet_protocol_SSH_url', map: 'internet_protocol_SSH_url', type: 'string' },
+                        { name: 'internet_protocol_SSH_port_number', map: 'internet_protocol_SSH_port_number', type: 'number' },  
+                        { name: 'internet_protocol_SSH_InternetFolder', map: 'internet_protocol_SSH_InternetFolder', type: 'string' },
+                        { name: 'internet_protocol_SSH_login', map: 'internet_protocol_SSH_login', type: 'string' },
+                        { name: 'internet_protocol_SSH_AccountOpt', map: 'internet_protocol_SSH_AccountOpt', type: 'string' },
+                        { name: 'internet_protocol_SSH_save_password', map: 'internet_protocol_SSH_save_password', type: 'boolean' },
+
+                        { name: 'internet_protocol_SSH_save_user_id', map: 'internet_protocol_SSH_save_user_id', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_allow_ipv6', map: 'internet_protocol_SSH_allow_ipv6', type: 'boolean' },
+
+
+                        { name: 'internet_protocol_SSH_auto_resume_transfer', map: 'internet_protocol_SSH_auto_resume_transfer', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_adv_CharsetComboIndex', map: 'internet_protocol_SSH_adv_CharsetComboIndex', type: 'number' },  
+                        { name: 'internet_protocol_SSH_adv_replace_characters', map: 'internet_protocol_SSH_adv_replace_characters', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_adv_recursive_listing', map: 'internet_protocol_SSH_adv_recursive_listing', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_adv_verify_destination_file', map: 'internet_protocol_SSH_adv_verify_destination_file', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_adv_zone', map: 'internet_protocol_SSH_adv_zone', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_adv_auto', map: 'internet_protocol_SSH_adv_auto', type: 'boolean' },
+                        
+                        { name: 'internet_protocol_SSH_adv_list', map: 'internet_protocol_SSH_adv_list', type: 'number' },  
+                        { name: 'internet_protocol_SSH_adv_upload_min', map: 'internet_protocol_SSH_adv_upload_min', type: 'number' },  
+                        { name: 'internet_protocol_SSH_adv_timeout', map: 'internet_protocol_SSH_adv_timeout', type: 'number' },  
+                        { name: 'internet_protocol_SSH_adv_retries', map: 'internet_protocol_SSH_adv_retries', type: 'number' },  
+                        { name: 'internet_protocol_SSH_adv_http_retries', map: 'internet_protocol_SSH_adv_http_retries', type: 'number' },  
+                        { name: 'internet_protocol_SSH_proxy_proxy_type', map: 'internet_protocol_SSH_proxy_proxy_type', type: 'number' },  
+                        { name: 'internet_protocol_SSH_proxy_proxy_host', map: 'internet_protocol_SSH_proxy_proxy_host', type: 'string' },  
+                        { name: 'internet_protocol_SSH_proxy_proxy_port', map: 'internet_protocol_SSH_proxy_proxy_port', type: 'number' },  
+                        { name: 'internet_protocol_SSH_proxy_user_id', map: 'internet_protocol_SSH_proxy_user_id', type: 'string' },  
+                        { name: 'internet_protocol_SSH_proxy_password', map: 'internet_protocol_SSH_proxy_password', type: 'string' },  
+                        { name: 'internet_protocol_SSH_proxy_send_host_command', map: 'internet_protocol_SSH_proxy_send_host_command', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_Security_SSH_username_password', map: 'internet_protocol_SSH_Security_SSH_username_password', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_Security_SSH_keyboard', map: 'internet_protocol_SSH_Security_SSH_keyboard', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_Security_SSH_certificate', map: 'internet_protocol_SSH_Security_SSH_certificate', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_security_CertificateComboIndex', map: 'internet_protocol_SSH_security_CertificateComboIndex', type: 'number' },  
+                        { name: 'internet_protocol_SSH_security_CertificatePassword', map: 'internet_protocol_SSH_security_CertificatePassword', type: 'string' },  
+                        { name: 'internet_protocol_SSH_security_nopassword', map: 'internet_protocol_SSH_security_nopassword', type: 'boolean' },
+                        { name: 'internet_protocol_SSH_certificates_certificates', map: 'internet_protocol_SSH_certificates_certificates', type: 'string' },  
+                        { name: 'internet_protocol_SSH_certificates_certname_forreference', map: 'internet_protocol_SSH_certificates_certname_forreference', type: 'string' },  
+                        { name: 'internet_protocol_SSH_certificates_private_keyfile', map: 'internet_protocol_SSH_certificates_private_keyfile', type: 'string' },  
+                        { name: 'internet_protocol_SSH_certificates_public_keyfile', map: 'internet_protocol_SSH_certificates_public_keyfile', type: 'string' }
+                        ]
+                }              
+                else if( GetBaseProtocolName( ProtocolName ) == 'Google Drive'  )
                 {
 
                     IntProtSetSource.datafields = [
@@ -122,8 +169,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                         { name: 'internet_protocol_GDrive_adv_replace_characters', map: 'internet_protocol_GDrive_adv_replace_characters', type: 'boolean' },                                             
                         { name: 'internet_protocol_GDrive_adv_enable_doc_convercion', map: 'internet_protocol_GDrive_adv_enable_doc_convercion', type: 'boolean' },                                                               
                         { name: 'internet_protocol_GDrive_adv_zone', map: 'internet_protocol_GDrive_adv_zone', type: 'boolean' },                                                               
-                        { name: 'internet_protocol_GDrive_adv_auto', map: 'internet_protocol_GDrive_adv_auto', type: 'boolean' },                                                               
-                        { name: 'internet_protocol_GDrive_adv_UTC', map: 'internet_protocol_GDrive_adv_UTC', type: 'boolean' },                                                               
+                        { name: 'internet_protocol_GDrive_adv_auto', map: 'internet_protocol_GDrive_adv_auto', type: 'boolean' },                                                                                                                                                      
                         { name: 'internet_protocol_GDrive_adv_list', map: 'internet_protocol_GDrive_adv_list', type: 'number' },                                                               
                         { name: 'internet_protocol_GDrive_adv_upload_min', map: 'internet_protocol_GDrive_adv_upload_min', type: 'number' },                                                               
                         { name: 'internet_protocol_GDrive_adv_timeout', map: 'internet_protocol_GDrive_adv_timeout', type: 'number' },                                                               
@@ -137,7 +183,9 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                         { name: 'internet_protocol_GDrive_proxy_send_host_command', map: 'internet_protocol_GDrive_proxy_send_host_command', type: 'boolean' },                                                               
                         { name: 'internet_protocol_GDrive_FormatSpreadsheets_Group', map: 'internet_protocol_GDrive_FormatSpreadsheets_Group', type: 'string' },                                                               
                         { name: 'internet_protocol_GDrive_FormatDownldDocs_Group', map: 'internet_protocol_GDrive_FormatDownldDocs_Group', type: 'string' },                                                               
-                        { name: 'internet_protocol_GDrive_FormatDownldPres_Group', map: 'internet_protocol_GDrive_FormatDownldPres_Group', type: 'string' },                                                               
+                        { name: 'internet_protocol_GDrive_FormatDownldPres_Group', map: 'internet_protocol_GDrive_FormatDownldPres_Group', type: 'string' }, 
+                        { name: 'internet_protocol_GDrive_FormatDownldDraw_Group', map: 'internet_protocol_GDrive_FormatDownldDraw_Group', type: 'string' },                                                               
+                        
                         { name: 'internet_protocol_GDrive_GDocs_ftconvert_csv', map: 'internet_protocol_GDrive_GDocs_ftconvert_csv', type: 'boolean' },                                                                                                                                                                                                                                                                                                    
                         { name: 'internet_protocol_GDrive_GDocs_ftconvert_html', map: 'internet_protocol_GDrive_GDocs_ftconvert_html', type: 'boolean' },                                                                                                                                                                                                                                                                                                    
                         { name: 'internet_protocol_GDrive_GDocs_ftconvert_pdf', map: 'internet_protocol_GDrive_GDocs_ftconvert_pdf', type: 'boolean' },                                                                                                                                                                                                                                                                                                    
@@ -155,7 +203,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                         { name: 'internet_protocol_GDrive_GDocs_ftconvert_xlsx', map: 'internet_protocol_GDrive_GDocs_ftconvert_xlsx', type: 'boolean' }                                                                                                                                                                                                                                                                                                                                                                
                     ]
                 }
-                else if( ProtocolName == 'HTTP' )
+                else if( GetBaseProtocolName( ProtocolName ) == 'HTTP' )
                 {
 
                     IntProtSetSource.datafields = [
@@ -182,8 +230,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                         { name: 'internet_protocol_HTTP_adv_CharsetIndex', map: 'internet_protocol_HTTP_adv_CharsetIndex', type: 'number' }, 
                         { name: 'internet_protocol_HTTP_adv_replace_characters', map: 'internet_protocol_HTTP_adv_replace_characters', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                
                         { name: 'internet_protocol_HTTP_adv_zone', map: 'internet_protocol_HTTP_adv_zone', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                        { name: 'internet_protocol_HTTP_adv_auto', map: 'internet_protocol_HTTP_adv_auto', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                
-                        { name: 'internet_protocol_HTTP_adv_UTC', map: 'internet_protocol_HTTP_adv_UTC', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                
+                        { name: 'internet_protocol_HTTP_adv_auto', map: 'internet_protocol_HTTP_adv_auto', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                         { name: 'internet_protocol_HTTP_adv_list', map: 'internet_protocol_HTTP_adv_list', type: 'number' }, 
                         { name: 'internet_protocol_HTTP_adv_upload_min', map: 'internet_protocol_HTTP_adv_upload_min', type: 'number' }, 
                         { name: 'internet_protocol_HTTP_adv_timeout', map: 'internet_protocol_HTTP_adv_timeout', type: 'number' }, 
@@ -209,7 +256,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                       ]              
               
                   } 
-                  else if( ProtocolName == 'Amazon S3' )
+                  else if( GetBaseProtocolName( ProtocolName ) == 'Amazon S3' )
                   {
 
                     IntProtSetSource.datafields = [
@@ -229,7 +276,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                         { name: 'internet_protocol_AmazonS3_recursive_listing', map: 'internet_protocol_AmazonS3_recursive_listing', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                
                         { name: 'internet_protocol_AmazonS3_use_server_side_encryption', map: 'internet_protocol_AmazonS3_use_server_side_encryption', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                
                         { name: 'internet_protocol_AmazonS3_adv_zone', map: 'internet_protocol_AmazonS3_adv_zone', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                
-                        { name: 'internet_protocol_AmazonS3_adv_UTC', map: 'internet_protocol_AmazonS3_adv_UTC', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                
+                        { name: 'internet_protocol_AmazonS3_adv_auto', map: 'internet_protocol_AmazonS3_adv_auto', type: 'boolean' },                                                                                                                                                                                                                                                                                                                                                                
                         { name: 'internet_protocol_AmazonS3_adv_list', map: 'internet_protocol_AmazonS3_adv_list', type: 'number' }, 
                         { name: 'internet_protocol_AmazonS3_adv_upload_min', map: 'internet_protocol_AmazonS3_adv_upload_min', type: 'number' }, 
                         { name: 'internet_protocol_AmazonS3_adv_timeout', map: 'internet_protocol_AmazonS3_adv_timeout', type: 'number' }, 
@@ -251,7 +298,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                        ] 
                               
                  }
-                 else if( ProtocolName == 'Asure' )
+                 else if( GetBaseProtocolName( ProtocolName ) == 'Asure' )
                  {
                     IntProtSetSource.datafields = [
                       { name: 'Name', type: 'string' },
@@ -268,7 +315,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                       { name: 'internet_protocol_Asure_adv_recursive_listing', map: 'internet_protocol_Asure_adv_recursive_listing', type: 'boolean' },  
                       { name: 'internet_protocol_Asure_adv_cache_control', map: 'internet_protocol_Asure_adv_cache_control', type: 'number' },  
                       { name: 'internet_protocol_Asure_adv_zone', map: 'internet_protocol_Asure_adv_zone', type: 'boolean' },  
-                      { name: 'internet_protocol_Asure_adv_UTC', map: 'internet_protocol_Asure_adv_UTC', type: 'boolean' },  
+                      { name: 'internet_protocol_Asure_adv_auto', map: 'internet_protocol_Asure_adv_auto', type: 'boolean' },  
                       { name: 'internet_protocol_Asure_adv_list', map: 'internet_protocol_Asure_adv_list', type: 'number' },  
                       { name: 'internet_protocol_Asure_adv_upload_min', map: 'internet_protocol_Asure_adv_upload_min', type: 'number' },  
                       { name: 'internet_protocol_Asure_adv_timeout', map: 'internet_protocol_Asure_adv_timeout', type: 'number' },  
@@ -289,7 +336,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                       { name: 'internet_protocol_Asure_security_nopassword', map: 'internet_protocol_Asure_security_nopassword', type: 'boolean' }
                     ]                       
                 }
-                else if( ProtocolName == 'WebDAV' )
+                else if( GetBaseProtocolName( ProtocolName ) == 'WebDAV' )
                 { 
                     IntProtSetSource.datafields = [
                       { name: 'Name', type: 'string' },
@@ -311,7 +358,6 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                       { name: 'internet_protocol_WebDAV_adv_TimestampsForUploads', map: 'internet_protocol_WebDAV_adv_TimestampsForUploads', type: 'number' },  
                       { name: 'internet_protocol_WebDAV_adv_zone', map: 'internet_protocol_WebDAV_adv_zone', type: 'boolean' },  
                       { name: 'internet_protocol_WebDAV_adv_auto', map: 'internet_protocol_WebDAV_adv_auto', type: 'boolean' },
-                      { name: 'internet_protocol_WebDAV_adv_UTC', map: 'internet_protocol_WebDAV_adv_UTC', type: 'boolean' },
                       { name: 'internet_protocol_WebDAV_adv_list', map: 'internet_protocol_WebDAV_adv_list', type: 'number' },  
                       { name: 'internet_protocol_WebDAV_adv_upload_min', map: 'internet_protocol_WebDAV_adv_upload_min', type: 'number' },  
                       { name: 'internet_protocol_WebDAV_adv_timeout', map: 'internet_protocol_WebDAV_adv_timeout', type: 'number' },  
@@ -338,7 +384,7 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                       ]              
 
                 }                       
-                else if( ProtocolName == 'RSync' )
+                else if( GetBaseProtocolName( ProtocolName ) == 'RSync' )
                 { 
                     IntProtSetSource.datafields = [
                       { name: 'Name', type: 'string' },
@@ -356,7 +402,6 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                       { name: 'internet_protocol_Rsync_adv_TimestampsForUploadsComboIndex', map: 'internet_protocol_Rsync_adv_TimestampsForUploadsComboIndex', type: 'number' },  
                       { name: 'internet_protocol_Rsync_adv_zone', map: 'internet_protocol_Rsync_adv_zone', type: 'boolean' },  
                       { name: 'internet_protocol_Rsync_adv_auto', map: 'internet_protocol_Rsync_adv_auto', type: 'boolean' },  
-                      { name: 'internet_protocol_Rsync_adv_UTC', map: 'internet_protocol_Rsync_adv_UTC', type: 'boolean' },  
                       { name: 'internet_protocol_Rsync_adv_list', map: 'internet_protocol_Rsync_adv_list', type: 'number' },  
                       { name: 'internet_protocol_Rsync_adv_upload_min', map: 'internet_protocol_Rsync_adv_upload_min', type: 'number' },  
                       { name: 'internet_protocol_Rsync_adv_timeout', map: 'internet_protocol_Rsync_adv_timeout', type: 'number' },  
@@ -382,8 +427,49 @@ function InitProtocolSettingsDatasource( IntProtSetSource, ProfileName, LeftOrRi
                       
                     ]
                 }                              
- 
-               
+                else if( GetBaseProtocolName( ProtocolName ) == 'Glacier' )
+                { 
+                    IntProtSetSource.datafields = [
+                      { name: 'Name', type: 'string' },
+                      { name: 'internet_protocol_Glacier_Vault', map: 'internet_protocol_Glacier_Vault', type: 'string' },                          
+                      { name: 'internet_protocol_Glacier_RegionComboIndex', map: 'internet_protocol_Glacier_RegionComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_Glacier_InternetFolder', map: 'internet_protocol_Glacier_InternetFolder', type: 'string' },                                                
+                      { name: 'internet_protocol_Glacier_AccountOpt', map: 'internet_protocol_Glacier_AccountOpt', type: 'string' }, 
+
+                      { name: 'internet_protocol_Glacier_save_access_id', map: 'internet_protocol_Glacier_save_access_id', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_save_password', map: 'internet_protocol_Glacier_save_password', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_allow_ipv6', map: 'internet_protocol_Glacier_allow_ipv6', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_filename_encoding', map: 'internet_protocol_Glacier_filename_encoding', type: 'boolean' },  
+                        
+
+                      { name: 'internet_protocol_Glacier_adv_CharsetComboIndex', map: 'internet_protocol_Glacier_adv_CharsetComboIndex', type: 'number' },  
+                      { name: 'internet_protocol_Glacier_adv_replace_characters', map: 'internet_protocol_Glacier_adv_replace_characters', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_recursive_listing', map: 'internet_protocol_Glacier_recursive_listing', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_adv_zone', map: 'internet_protocol_Glacier_adv_zone', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_adv_auto', map: 'internet_protocol_Glacier_adv_auto', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_adv_list', map: 'internet_protocol_Glacier_adv_list', type: 'number' },  
+                      { name: 'internet_protocol_Glacier_adv_upload_min', map: 'internet_protocol_Glacier_adv_upload_min', type: 'number' },              
+                      { name: 'internet_protocol_Glacier_adv_timeout', map: 'internet_protocol_Glacier_adv_timeout', type: 'number' }, 
+                      { name: 'internet_protocol_Glacier_adv_retries', map: 'internet_protocol_Glacier_adv_retries', type: 'number' }, 
+                      { name: 'internet_protocol_Glacier_adv_http_retries', map: 'internet_protocol_Glacier_adv_http_retries', type: 'number' }, 
+                      { name: 'internet_protocol_Glacier_proxy_proxy_typeComboIndex', map: 'internet_protocol_Glacier_proxy_proxy_typeComboIndex', type: 'number' }, 
+                      { name: 'internet_protocol_Glacier_proxy_proxy_host', map: 'internet_protocol_Glacier_proxy_proxy_host', type: 'string' },                          
+                      { name: 'internet_protocol_Glacier_proxy_proxy_port', map: 'internet_protocol_Glacier_proxy_proxy_port', type: 'number' }, 
+                      { name: 'internet_protocol_Glacier_proxy_login', map: 'internet_protocol_Glacier_proxy_login', type: 'string' },                          
+                      { name: 'internet_protocol_Glacier_proxy_password', map: 'internet_protocol_Glacier_proxy_password', type: 'string' },                          
+                      { name: 'internet_protocol_Glacier_proxy_send_host_command', map: 'internet_protocol_Glacier_proxy_send_host_command', type: 'boolean' },  
+                      { name: 'IntProtSet_Glacier_Security_Mode_Group', map: 'IntProtSet_Glacier_Security_Mode_Group', type: 'string' },                          
+                      { name: 'internet_protocol_Glacier_Security_SSH_username_password', map: 'internet_protocol_Glacier_Security_SSH_username_password', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_Security_SSH_keyboard', map: 'internet_protocol_Glacier_Security_SSH_keyboard', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_Security_SSH_certificate', map: 'internet_protocol_Glacier_Security_SSH_certificate', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_security_Certificate', map: 'internet_protocol_Glacier_security_Certificate', type: 'boolean' },  
+                      { name: 'internet_protocol_Glacier_security_CertificatePassword', map: 'internet_protocol_Glacier_security_CertificatePassword', type: 'string' },                          
+                      { name: 'internet_protocol_Glacier_security_nopassword', map: 'internet_protocol_Glacier_security_nopassword', type: 'boolean' }
+                    ]
+                }                                                                            
+
+                     
+                                 
              
 }
 
@@ -407,7 +493,7 @@ function DoInternetSettingsDialogLeft( ProfileName, ProtocolName )
               {
                 var record = IntProtSetDataAdapter.records[0];
                 
-                LoadRecordToRegistryList(record, GInternetProtocolSetLEFTRegistryList, ProtocolName);
+                LoadRecordToRegistryList(record, GInternetProtocolSetLEFTRegistryList, GetBaseProtocolName( ProtocolName ) );
                 InitProtocolSettingsForm( ProfileName, GInternetProtocolSetLEFTRegistryList, "Left", ProtocolName );                          
               }
                                    
@@ -442,7 +528,7 @@ function DoInternetSettingsDialogRight( ProfileName, ProtocolName )
               {
                 var record = IntProtSetDataAdapter.records[0];
                 
-                LoadRecordToRegistryList(record, GInternetProtocolSetRIGHTRegistryList, ProtocolName);
+                LoadRecordToRegistryList(record, GInternetProtocolSetRIGHTRegistryList, GetBaseProtocolName( ProtocolName ) );
                 InitProtocolSettingsForm( ProfileName, GInternetProtocolSetRIGHTRegistryList, "Right", ProtocolName );                          
               }
                                    

@@ -12,8 +12,16 @@
                     <br/><br/>
                     <div>Account( opt. )</div><div><input type="password" id="inptAccountOpt"/></div>
                     <br/><br/>                  
-                    <div>Save Optional Account Name</div><div><div id="cbIntProtSet_GDrive_save_optional_accname"/></div>                          
-                    <div>Allow IPV6</div><div><div id="cbIntProtSet_GDrive_allow_ipv6"/></div> 
+
+                    <table style="width:250px">
+                    <tr>
+                      <td><div>Save Optional Account Name</div><div><div id="cbIntProtSet_GDrive_save_optional_accname"/></div></td>
+                      <td><div>Allow IPV6</div><div><div id="cbIntProtSet_GDrive_allow_ipv6"/></div></td>                       
+                    </tr>  
+                    </table>
+
+                                              
+                     
                     <div>Automatically resume incomplete transfers(using temporary filenames until complete)</div><div><div id="cbIntProtSet_GDrive_auto_resume_transfer"/></div>
                     <div>Filename Encoding: on right side, put timestamp in file names(to preserve it if server doesn"t support setting file times)</div>
                     <div><div id="cbIntProtSet_GDrive_filename_encoding"/></div><br/>                                                                                                                
@@ -22,11 +30,19 @@
                     <div>Character Set:</div><div id ="comboIntProtSet_GDrive_adv_Charset" style="float: left;"></div><br/><br/>                
                     <div>Replace characters</div><div><div id="cbIntProtSet_GDrive_adv_replace_characters"/></div>
                     <div>Enable Document Conversion</div><div><div id="cbIntProtSet_GDrive_adv_enable_doc_convercion"/></div>
-                    <div>Zone</div><div><div id="cbIntProtSet_GDrive_adv_zone"/></div> 
-                    <div>Auto</div><div><div id="cbIntProtSet_GDrive_adv_auto"/></div>       
-                    <div>UTC Offsets</div><div><div id="cbIntProtSet_GDrive_adv_UTC"/></div>     
-                    <div>List</div><div><input type="text" id="inptIntProtSet_GDrive_adv_list"/></div>
-                    <div>Upload</div><div><input type="text" id="inptIntProtSet_GDrive_adv_upload_min"/></div><div>min</div>   
+
+                    
+                    <br/><br/> 
+                    <table>                        
+                    <tr>
+                      <td><div>Zone</div><div><div id="cbIntProtSet_GDrive_adv_zone"/></div></td>  
+                      <td><div>Auto</div><div><div id="cbIntProtSet_GDrive_adv_auto"/></div></td>                      
+                      <td class="auto-style_IntProtAdv2" >UTC Offsets List<div><input type="text" id="inptIntProtSet_GDrive_adv_list"/></div></td>                       
+                      <td class="auto-style_IntProtAdv1" >Upload (min)<div><input type="text" id="inptIntProtSet_GDrive_adv_upload_min"/></div></td>                       
+                    </tr>  
+                    </table>
+
+
                     <div>Timeout</div><div><input type="text" id="inptIntProtSet_GDrive_adv_timeout"/></div><div>seconds. These are global settings</div>   
                     <div>Retries</div><div><input type="text" id="inptIntProtSet_GDrive_adv_retries"/></div>   
                     <div>HTTP Authentication Retries</div><div><input type="text" id="inptIntProtSet_GDrive_adv_http_retries"/></div>   
@@ -43,39 +59,88 @@
                     <div>Send HOST command</div><div><div id="cbIntProtSet_GDrive_proxy_send_host_command"/></div>                                                                                              
                 </div>
                 <div>
+                   <br/>
                    <!--Google Docs-->
                    <div>These are global settings that apply to all profiles</div>  
+                   <br/>
                    <div>Format For Downloaded Spreadsheets</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_xlsx">.xlsx</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_csv">.csv</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_pdf">.pdf</div>         
-
+                   <br/> 
+                   <table style="width:250px">
+                    <tr>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_xlsx">.xlsx</div></td>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_csv">.csv</div></td>                       
+                      <td><div id="rbIntProtSet_GDrive_GDocs_pdf">.pdf</div></td>
+                    </tr>  
+                    </table>
+                    <br/><br/>   
+                                                       
                    <div>Format For Downloaded Documents</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_dd_docx">.docx</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_dd_odt">.odt</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_dd_rtf">.rtf</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_dd_html">.html</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_dd_pdf">.pdf</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_dd_txt">.txt</div>
-                   <div>Format For Downloaded Presentations</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_dpres_pptx">.pptx</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_dpres_pdf">.pdf</div>
-                       <div id="rbIntProtSet_GDrive_GDocs_dpres_txt">.txt</div>                         
+                   <br/>
+                   <table style="width:250px">
+                    <tr>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_dd_docx">.docx</div></td>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_dd_odt">.odt</div></td>                       
+                      <td><div id="rbIntProtSet_GDrive_GDocs_dd_rtf">.rtf</div></td>
+                    </tr>  
+                    <tr>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_dd_html">.html</div></td>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_dd_pdf">.pdf</div></td>                       
+                      <td><div id="rbIntProtSet_GDrive_GDocs_dd_txt">.txt</div></td>
+                    </tr>  
+                    </table>
+                                                                                        
+                    <br/><br/>   
+                       
+                    <div>Format For Downloaded Presentations</div>
+                    <br/>
+                    <table style="width:250px">
+                    <tr>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_dpres_pptx">.pptx</div></td>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_dpres_pdf">.pdf</div></td>                       
+                      <td><div id="rbIntProtSet_GDrive_GDocs_dpres_txt">.txt</div></td>
+                    </tr>  
+                    </table>
+                    <br/><br/>
+                       
+                    <div>Format For Downloaded Drawings</div>
+                    <br/>
+                    <table style="width:250px">
+                    <tr>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_ddraw_jpg">.jpg</div></td>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_ddraw_png">.png</div></td>                       
+                      <td><div id="rbIntProtSet_GDrive_GDocs_ddraw_pdf">.pdf</div></td>
+                      <td><div id="rbIntProtSet_GDrive_GDocs_ddraw_xml">.xml</div></td>
+                    </tr>  
+                    </table>
+                    <br/><br/>
+                       
+                                             
                     <div>File Types To Convert As Google Docs When Uploading</div>
-                       <div>.csv</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_csv"/></div> 
-                       <div>.html</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_html"/></div> 
-                       <div>.pdf</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_pdf"/></div>    
-                       <div>.pptx</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_pptx"/></div>    
-                       <div>.txt</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_txt"/></div>    
-                       <div>.doc</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_doc"/></div>  
-                       <div>.ods</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_ods"/></div>  
-                       <div>.pps</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_pps"/></div>  
-                       <div>.rtf</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_rtf"/></div>  
-                       <div>.xls</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_xls"/></div>  
-                       <div>.docx</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_docx"/></div>  
-                       <div>.odt</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_odt"/></div>  
-                       <div>.ppt</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_ppt"/></div>  
-                       <div>.tsv</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_tsv"/></div>  
-                       <div>.xlsx</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_xlsx"/></div>  
+                    <br/> 
+                    <table style="width:250px">
+                    <tr>
+                      <td><div>.csv</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_csv"/></div> </td>
+                      <td><div>.html</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_html"/></div></td>                       
+                      <td><div>.pdf</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_pdf"/></div></td>
+                      <td><div>.pptx</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_pptx"/></div></td>
+                      <td><div>.txt</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_txt"/></div></td>
+                    </tr>  
+                    <tr>
+                      <td><div>.doc</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_doc"/></div></td>
+                      <td><div>.ods</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_ods"/></div></td>                       
+                      <td><div>.pps</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_pps"/></div></td>
+                      <td><div>.rtf</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_rtf"/></div></td>
+                      <td><div>.xls</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_xls"/></div></td>
+                    </tr>  
+                    <tr>
+                      <td><div>.docx</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_docx"/></div></td>
+                      <td><div>.odt</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_odt"/></div></td>                       
+                      <td><div>.ppt</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_ppt"/></div></td>
+                      <td><div>.tsv</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_tsv"/></div></td>
+                      <td><div>.xlsx</div><div><div id="cbIntProtSet_GDrive_GDocs_ftconvert_xlsx"/></div></td>
+                    </tr>  
+                    </table>
+                       
+              
                 </div>
              </div>

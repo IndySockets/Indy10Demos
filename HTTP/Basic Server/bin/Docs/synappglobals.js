@@ -3,12 +3,14 @@
 var ProfileEditorFormHTML = '';  
 var ProtocolSettingsFormHTML = '';
 var InternetProtSettingsTabsHTML_FTP = ""; 
+var InternetProtSettingsTabsHTML_SFTP = "";
 var InternetProtSettingsTabsHTML_GoogleDrive = "";
 var InternetProtSettingsTabsHTML_HTTP = "";
 var InternetProtSettingsTabsHTML_AmazonS3 = "";
 var InternetProtSettingsTabsHTML_Asure = "";
 var InternetProtSettingsTabsHTML_WebDAV = "";
 var InternetProtSettingsTabsHTML_RSync = "";
+var InternetProtSettingsTabsHTML_Glacier = "";
 var GFuncInitProfileEditorForm = null;
 
 var GSelectedProfileName = "";
@@ -17,6 +19,30 @@ var GRightProtocolName = "";
 
 
   
+
+function GetBaseProtocolName( ProtocolName )
+{
+   if( ProtocolName == 'FTP' )
+     return 'FTP'; 
+   if( ProtocolName == 'SSH')
+     return 'SSH';  
+   if( ProtocolName == 'Amazon S3' )
+     return 'Amazon S3';    
+   else if( ProtocolName == 'HTTP' )  
+     return 'HTTP';  
+   else if( ( ProtocolName == 'Google Drive' ) || ( ProtocolName == 'OneDrive' ) || ( ProtocolName == 'Amazon Cloud Drive' ) || ( ProtocolName == 'DropBox' )
+        || ( ProtocolName == 'Box' ) )
+     return 'Google Drive';     
+   else if( ( ProtocolName == 'Asure' ) || ( ProtocolName == 'SugarSync' ) || ( ProtocolName == 'Rackspace' ) )  
+     return 'Asure';
+   else if( ProtocolName == 'WebDAV' )
+     return 'WebDAV';
+   else if( ProtocolName == 'RSync' )
+     return 'RSync';
+   else if( ProtocolName == 'Glacier' )
+     return 'Glacier';
+}
+
  function GetCheckedRadiobuttonName( radiobutton1, radiobutton2, radiobutton3, radiobutton4, radiobutton5, radiobutton6 )
             {
                if( radiobutton1 !== null && radiobutton1.jqxRadioButton( 'checked')  )
@@ -57,6 +83,7 @@ function LoadRecordToRegistryList(record, RegistryList, ControlAppGroup)
 {
      try
        {
+
 
             for (index = 0; index < RegistryList.length; index++) 
             {
@@ -738,7 +765,7 @@ var GInternetProtocolSetRegistryList =  new Array();
              GInternetProtocolSetRegistryList[19] = {fieldname:"internet_protocol_FTP_adv_TimestampsForUploadsComboIndex", type:"number", controlname:"comboIntProtSet_FTP_adv_TimestampsForUploads", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "FTP"}; 
              GInternetProtocolSetRegistryList[20] = {fieldname:"internet_protocol_FTP_adv_zone", type:"boolean", controlname:"cbIntProtSet_FTP_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "FTP"};            
              GInternetProtocolSetRegistryList[21] = {fieldname:"internet_protocol_FTP_adv_auto", type:"boolean", controlname:"cbIntProtSet_FTP_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "FTP"};            
-             GInternetProtocolSetRegistryList[22] = {fieldname:"internet_protocol_FTP_adv_UTC", type:"boolean", controlname:"cbIntProtSet_FTP_adv_UTC", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "FTP"};            
+             GInternetProtocolSetRegistryList[22] = {fieldname:"", type:"boolean", controlname:"", controltype:"", default: "false", value: null, ControlAppGroup: ""};//void            
              GInternetProtocolSetRegistryList[23] = {fieldname:"internet_protocol_FTP_adv_list", type:"decimal", controlname:"inptIntProtSet_FTP_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "FTP"};
              GInternetProtocolSetRegistryList[24] = {fieldname:"internet_protocol_FTP_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_FTP_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "FTP"};
              GInternetProtocolSetRegistryList[25] = {fieldname:"internet_protocol_FTP_adv_timeout", type:"decimal", controlname:"inptIntProtSet_FTP_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "FTP"};
@@ -811,7 +838,7 @@ var GInternetProtocolSetRegistryList =  new Array();
              GInternetProtocolSetRegistryList[56] = {fieldname:"internet_protocol_GDrive_adv_enable_doc_convercion", type:"boolean", controlname:"cbIntProtSet_GDrive_adv_enable_doc_convercion", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Google Drive"};            
              GInternetProtocolSetRegistryList[57] = {fieldname:"internet_protocol_GDrive_adv_zone", type:"boolean", controlname:"cbIntProtSet_GDrive_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Google Drive"};            
              GInternetProtocolSetRegistryList[58] = {fieldname:"internet_protocol_GDrive_adv_auto", type:"boolean", controlname:"cbIntProtSet_GDrive_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Google Drive"};            
-             GInternetProtocolSetRegistryList[59] = {fieldname:"internet_protocol_GDrive_adv_UTC", type:"boolean", controlname:"cbIntProtSet_GDrive_adv_UTC", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Google Drive"};            
+             GInternetProtocolSetRegistryList[59] = {fieldname:"", type:"boolean", controlname:"", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: ""}; //void           
              GInternetProtocolSetRegistryList[60] = {fieldname:"internet_protocol_GDrive_adv_list", type:"number", controlname:"inptIntProtSet_GDrive_adv_list", controltype:"jqxFormattedInput", default: 0, value: null, ControlAppGroup: "Google Drive"}; 
              GInternetProtocolSetRegistryList[61] = {fieldname:"internet_protocol_GDrive_adv_upload_min", type:"number", controlname:"inptIntProtSet_GDrive_adv_upload_min", controltype:"jqxFormattedInput", default: 0, value: null, ControlAppGroup: "Google Drive"}; 
              GInternetProtocolSetRegistryList[62] = {fieldname:"internet_protocol_GDrive_adv_timeout", type:"number", controlname:"inptIntProtSet_GDrive_adv_timeout", controltype:"jqxFormattedInput", default: 0, value: null, ControlAppGroup: "Google Drive"};                                                                                                                                             
@@ -858,6 +885,23 @@ var GInternetProtocolSetRegistryList =  new Array();
 
              }};                                                                          
 
+
+
+                                             //out of order. but added later.    
+             GInternetProtocolSetRegistryList[350] = {fieldname:"internet_protocol_GDrive_FormatDownldDraw_Group", type:"string", controlname:"", controltype:"ButtonGroup", default: "rbIntProtSet_GDrive_GDocs_ddraw_jpg", value: null, ControlAppGroup: "Google Drive",
+             getfunc: function()
+             {
+                return GetCheckedRadiobuttonName( $("#rbIntProtSet_GDrive_GDocs_ddraw_jpg"),  $("#rbIntProtSet_GDrive_GDocs_ddraw_png"), $("#rbIntProtSet_GDrive_GDocs_ddraw_pdf"), $("#rbIntProtSet_GDrive_GDocs_ddraw_xml"), null, null ); 
+
+             }, setfunc: function( option )
+             {
+                  SetRadioGroupChecked( option, $("#rbIntProtSet_GDrive_GDocs_ddraw_jpg"),  $("#rbIntProtSet_GDrive_GDocs_ddraw_png"), $("#rbIntProtSet_GDrive_GDocs_ddraw_pdf"), $("#rbIntProtSet_GDrive_GDocs_ddraw_xml"), null, null); 
+
+             }};                                                                          
+
+
+
+
              GInternetProtocolSetRegistryList[74] = {fieldname:"internet_protocol_GDrive_GDocs_ftconvert_csv", type:"boolean", controlname:"cbIntProtSet_GDrive_GDocs_ftconvert_csv", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Google Drive"};            
              GInternetProtocolSetRegistryList[75] = {fieldname:"internet_protocol_GDrive_GDocs_ftconvert_html", type:"boolean", controlname:"cbIntProtSet_GDrive_GDocs_ftconvert_html", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Google Drive"};            
              GInternetProtocolSetRegistryList[76] = {fieldname:"internet_protocol_GDrive_GDocs_ftconvert_pdf", type:"boolean", controlname:"cbIntProtSet_GDrive_GDocs_ftconvert_pdf", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Google Drive"};            
@@ -899,7 +943,7 @@ var GInternetProtocolSetRegistryList =  new Array();
              GInternetProtocolSetRegistryList[109] = {fieldname:"internet_protocol_HTTP_adv_replace_characters", type:"boolean", controlname:"cbIntProtSet_HTTP_adv_replace_characters", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "HTTP"};            
              GInternetProtocolSetRegistryList[110] = {fieldname:"internet_protocol_HTTP_adv_zone", type:"boolean", controlname:"cbIntProtSet_HTTP_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "HTTP"};            
              GInternetProtocolSetRegistryList[111] = {fieldname:"internet_protocol_HTTP_adv_auto", type:"boolean", controlname:"cbIntProtSet_HTTP_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "HTTP"};            
-             GInternetProtocolSetRegistryList[112] = {fieldname:"internet_protocol_HTTP_adv_UTC", type:"boolean", controlname:"cbIntProtSet_HTTP_adv_UTC", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "HTTP"};            
+             GInternetProtocolSetRegistryList[112] = {fieldname:"", type:"boolean", controlname:"", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: ""}; //void           
              GInternetProtocolSetRegistryList[113] = {fieldname:"internet_protocol_HTTP_adv_list", type:"decimal", controlname:"inptIntProtSet_HTTP_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "HTTP"};
              GInternetProtocolSetRegistryList[114] = {fieldname:"internet_protocol_HTTP_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_HTTP_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "HTTP"};
              GInternetProtocolSetRegistryList[115] = {fieldname:"internet_protocol_HTTP_adv_timeout", type:"decimal", controlname:"inptIntProtSet_HTTP_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "HTTP"};
@@ -953,7 +997,7 @@ var GInternetProtocolSetRegistryList =  new Array();
              GInternetProtocolSetRegistryList[147] = {fieldname:"internet_protocol_AmazonS3_recursive_listing", type:"boolean", controlname:"cbIntProtSet_AmazonS3_recursive_listing", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Amazon S3"};            
              GInternetProtocolSetRegistryList[148] = {fieldname:"internet_protocol_AmazonS3_use_server_side_encryption", type:"boolean", controlname:"cbIntProtSet_AmazonS3_use_server_side_encryption", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Amazon S3"};            
              GInternetProtocolSetRegistryList[149] = {fieldname:"internet_protocol_AmazonS3_adv_zone", type:"boolean", controlname:"cbIntProtSet_AmazonS3_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Amazon S3"};            
-             GInternetProtocolSetRegistryList[150] = {fieldname:"internet_protocol_AmazonS3_adv_UTC", type:"boolean", controlname:"cbIntProtSet_AmazonS3_adv_UTC", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Amazon S3"};            
+             GInternetProtocolSetRegistryList[150] = {fieldname:"internet_protocol_AmazonS3_adv_auto", type:"boolean", controlname:"cbIntProtSet_AmazonS3_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Amazon S3"};            
              GInternetProtocolSetRegistryList[151] = {fieldname:"internet_protocol_AmazonS3_adv_list", type:"decimal", controlname:"inptIntProtSet_AmazonS3_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Amazon S3"};
              GInternetProtocolSetRegistryList[152] = {fieldname:"internet_protocol_AmazonS3_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_AmazonS3_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Amazon S3"};
              GInternetProtocolSetRegistryList[153] = {fieldname:"internet_protocol_AmazonS3_adv_timeout", type:"decimal", controlname:"inptIntProtSet_AmazonS3_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Amazon S3"};
@@ -1003,7 +1047,7 @@ var GInternetProtocolSetRegistryList =  new Array();
             GInternetProtocolSetRegistryList[180] = {fieldname:"internet_protocol_Asure_adv_recursive_listing", type:"boolean", controlname:"cbIntProtSet_Asure_adv_recursive_listing", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Asure"};            
             GInternetProtocolSetRegistryList[181] = {fieldname:"internet_protocol_Asure_adv_cache_control", type:"decimal", controlname:"inptIntProtSet_Asure_adv_cache_control", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Asure"};
             GInternetProtocolSetRegistryList[182] = {fieldname:"internet_protocol_Asure_adv_zone", type:"boolean", controlname:"cbIntProtSet_Asure_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Asure"};            
-            GInternetProtocolSetRegistryList[183] = {fieldname:"internet_protocol_Asure_adv_UTC", type:"boolean", controlname:"cbIntProtSet_Asure_adv_UTC", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Asure"};            
+            GInternetProtocolSetRegistryList[183] = {fieldname:"internet_protocol_Asure_adv_UTC", type:"boolean", controlname:"cbIntProtSet_Asure_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Asure"};            
             GInternetProtocolSetRegistryList[184] = {fieldname:"internet_protocol_Asure_adv_list", type:"decimal", controlname:"inptIntProtSet_Asure_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Asure"};
             GInternetProtocolSetRegistryList[185] = {fieldname:"internet_protocol_Asure_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_Asure_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Asure"};
             GInternetProtocolSetRegistryList[186] = {fieldname:"internet_protocol_Asure_adv_timeout", type:"decimal", controlname:"inptIntProtSet_Asure_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Asure"};
@@ -1053,7 +1097,7 @@ var GInternetProtocolSetRegistryList =  new Array();
             GInternetProtocolSetRegistryList[217] = {fieldname:"internet_protocol_WebDAV_adv_TimestampsForUploads", type:"number", controlname:"comboIntProtSet_WebDAV_adv_TimestampsForUploads", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "WebDAV"}; 
             GInternetProtocolSetRegistryList[218] = {fieldname:"internet_protocol_WebDAV_adv_zone", type:"boolean", controlname:"cbIntProtSet_WebDAV_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
             GInternetProtocolSetRegistryList[219] = {fieldname:"internet_protocol_WebDAV_adv_auto", type:"boolean", controlname:"cbIntProtSet_WebDAV_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
-            GInternetProtocolSetRegistryList[220] = {fieldname:"internet_protocol_WebDAV_adv_UTC", type:"boolean", controlname:"cbIntProtSet_WebDAV_adv_UTC", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "WebDAV"};            
+            GInternetProtocolSetRegistryList[220] = {fieldname:"", type:"", controlname:"", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: ""};            
             GInternetProtocolSetRegistryList[221] = {fieldname:"internet_protocol_WebDAV_adv_list", type:"decimal", controlname:"inptIntProtSet_WebDAV_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "WebDAV"};
             GInternetProtocolSetRegistryList[222] = {fieldname:"internet_protocol_WebDAV_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_WebDAV_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "WebDAV"};
             GInternetProtocolSetRegistryList[223] = {fieldname:"internet_protocol_WebDAV_adv_timeout", type:"decimal", controlname:"inptIntProtSet_WebDAV_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "WebDAV"};
@@ -1106,7 +1150,7 @@ var GInternetProtocolSetRegistryList =  new Array();
             GInternetProtocolSetRegistryList[253] = {fieldname:"internet_protocol_Rsync_adv_TimestampsForUploadsComboIndex", type:"number", controlname:"comboIntProtSet_Rsync_adv_TimestampsForUploads", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "RSync"}; 
             GInternetProtocolSetRegistryList[254] = {fieldname:"internet_protocol_Rsync_adv_zone", type:"boolean", controlname:"cbIntProtSet_Rsync_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
             GInternetProtocolSetRegistryList[255] = {fieldname:"internet_protocol_Rsync_adv_auto", type:"boolean", controlname:"cbIntProtSet_Rsync_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
-            GInternetProtocolSetRegistryList[256] = {fieldname:"internet_protocol_Rsync_adv_UTC", type:"boolean", controlname:"cbIntProtSet_Rsync_adv_UTC", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "RSync"};            
+            GInternetProtocolSetRegistryList[256] = {fieldname:"", type:"boolean", controlname:"", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: ""};            
             GInternetProtocolSetRegistryList[257] = {fieldname:"internet_protocol_Rsync_adv_list", type:"decimal", controlname:"inptIntProtSet_Rsync_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
             GInternetProtocolSetRegistryList[258] = {fieldname:"internet_protocol_Rsync_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_Rsync_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
             GInternetProtocolSetRegistryList[259] = {fieldname:"internet_protocol_Rsync_adv_timeout", type:"decimal", controlname:"inptIntProtSet_Rsync_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "RSync"};
@@ -1131,10 +1175,107 @@ var GInternetProtocolSetRegistryList =  new Array();
             GInternetProtocolSetRegistryList[277] = {fieldname:"internet_protocol_Rsync_certificates_private_keyfile", type:"string", controlname:"inptIntProtSet_Rsync_certificates_private_keyfile", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
             GInternetProtocolSetRegistryList[278] = {fieldname:"internet_protocol_Rsync_certificates_public_keyfile", type:"string", controlname:"inptIntProtSet_Rsync_certificates_public_keyfile", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "RSync"}; 
                                               
- 
+
+            GInternetProtocolSetRegistryList[279] = {fieldname:"internet_protocol_SSH_LibraryComboIndex", type:"number", controlname:"jqxLibraryCombo", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[280] = {fieldname:"internet_protocol_SSH_url", type:"string", controlname:"inptIntProtSetSSH_url", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[281] = {fieldname:"internet_protocol_SSH_port_number", type:"decimal", controlname:"inptIntProtSet_SSH_port", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "SSH"};
+            GInternetProtocolSetRegistryList[282] = {fieldname:"internet_protocol_SSH_InternetFolder", type:"string", controlname:"inptInternetFolder", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[283] = {fieldname:"internet_protocol_SSH_login", type:"string", controlname:"inptIntProtSet_SSH_login", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[284] = {fieldname:"internet_protocol_SSH_AccountOpt", type:"string", controlname:"inptAccountOpt", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[285] = {fieldname:"internet_protocol_SSH_save_password", type:"boolean", controlname:"cbIntProtSet_SSH_save_password", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+
+            //skeeped
+            GInternetProtocolSetRegistryList[348] = {fieldname:"internet_protocol_SSH_save_user_id", type:"boolean", controlname:"cbIntProtSet_SSH_save_user_id", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[349] = {fieldname:"internet_protocol_SSH_allow_ipv6", type:"boolean", controlname:"cbIntProtSet_SSH_allow_ipv6", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
 
 
-  
+
+
+            GInternetProtocolSetRegistryList[286] = {fieldname:"internet_protocol_SSH_auto_resume_transfer", type:"boolean", controlname:"cbIntProtSet_SSH_auto_resume_transfer", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[287] = {fieldname:"internet_protocol_SSH_adv_CharsetComboIndex", type:"number", controlname:"comboIntProtSet_SSH_adv_Charset", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[288] = {fieldname:"internet_protocol_SSH_adv_replace_characters", type:"boolean", controlname:"cbIntProtSet_SSH_adv_replace_characters", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[289] = {fieldname:"internet_protocol_SSH_adv_recursive_listing", type:"boolean", controlname:"cbIntProtSet_SSH_adv_recursive_listing", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[290] = {fieldname:"internet_protocol_SSH_adv_verify_destination_file", type:"boolean", controlname:"cbIntProtSet_SSH_adv_verify_destination_file", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[291] = {fieldname:"internet_protocol_SSH_adv_zone", type:"boolean", controlname:"cbIntProtSet_SSH_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[292] = {fieldname:"internet_protocol_SSH_adv_auto", type:"boolean", controlname:"cbIntProtSet_SSH_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[293] = {fieldname: "", type:"boolean", controlname:"", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: ""};            
+            GInternetProtocolSetRegistryList[294] = {fieldname:"internet_protocol_SSH_adv_list", type:"decimal", controlname:"inptIntProtSet_SSH_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "SSH"};
+            GInternetProtocolSetRegistryList[295] = {fieldname:"internet_protocol_SSH_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_SSH_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "SSH"};
+            GInternetProtocolSetRegistryList[296] = {fieldname:"internet_protocol_SSH_adv_timeout", type:"decimal", controlname:"inptIntProtSet_SSH_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "SSH"};
+            GInternetProtocolSetRegistryList[297] = {fieldname:"internet_protocol_SSH_adv_retries", type:"decimal", controlname:"inptIntProtSet_SSH_adv_retries", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "SSH"};
+            GInternetProtocolSetRegistryList[298] = {fieldname:"internet_protocol_SSH_adv_http_retries", type:"decimal", controlname:"inptIntProtSet_SSH_adv_http_retries", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "SSH"};
+            GInternetProtocolSetRegistryList[299] = {fieldname:"internet_protocol_SSH_proxy_proxy_type", type:"number", controlname:"comboIntProtSet_SSH_proxy_proxy_type", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "SSH"};             
+            GInternetProtocolSetRegistryList[300] = {fieldname:"internet_protocol_SSH_proxy_proxy_host", type:"string", controlname:"inptIntProtSet_SSH_proxy_proxy_host", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[301] = {fieldname:"internet_protocol_SSH_proxy_proxy_port", type:"decimal", controlname:"inptIntProtSet_SSH_proxy_proxy_port", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "SSH"};
+            GInternetProtocolSetRegistryList[302] = {fieldname:"internet_protocol_SSH_proxy_user_id", type:"string", controlname:"inptIntProtSet_SSH_proxy_user_id", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[303] = {fieldname:"internet_protocol_SSH_proxy_password", type:"string", controlname:"inptIntProtSet_SSH_proxy_password", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[304] = {fieldname:"internet_protocol_SSH_proxy_send_host_command", type:"boolean", controlname:"cbIntProtSet_SSH_proxy_send_host_command", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[305] = {fieldname:"internet_protocol_SSH_Security_SSH_username_password", type:"boolean", controlname:"cbIntProtSet_SSH_Security_SSH_username_password", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};                                       
+            GInternetProtocolSetRegistryList[306] = {fieldname:"internet_protocol_SSH_Security_SSH_keyboard", type:"boolean", controlname:"cbIntProtSet_SSH_Security_SSH_keyboard", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[307] = {fieldname:"internet_protocol_SSH_Security_SSH_certificate", type:"boolean", controlname:"cbIntProtSet_SSH_Security_SSH_certificate", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[310] = {fieldname:"internet_protocol_SSH_security_CertificateComboIndex", type:"number", controlname:"comboIntProtSet_SSH_security_Certificate", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[311] = {fieldname:"internet_protocol_SSH_security_CertificatePassword", type:"string", controlname:"inptIntProtSet_SSH_security_CertificatePassword", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[312] = {fieldname:"internet_protocol_SSH_security_nopassword", type:"boolean", controlname:"cbIntProtSet_SSH_security_nopassword", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "SSH"};            
+            GInternetProtocolSetRegistryList[313] = {fieldname:"internet_protocol_SSH_certificates_certificates", type:"string", controlname:"inptIntProtSet_SSH_certificates_certificates", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[314] = {fieldname:"internet_protocol_SSH_certificates_certname_forreference", type:"string", controlname:"inptIntProtSet_SSH_certificates_certname_forreference", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[315] = {fieldname:"internet_protocol_SSH_certificates_private_keyfile", type:"string", controlname:"inptIntProtSet_SSH_certificates_private_keyfile", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            GInternetProtocolSetRegistryList[316] = {fieldname:"internet_protocol_SSH_certificates_public_keyfile", type:"string", controlname:"inptIntProtSet_SSH_certificates_public_keyfile", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "SSH"}; 
+            
+
+                                                                                                                                  
+                                                                                                                              
+            GInternetProtocolSetRegistryList[317] = {fieldname:"internet_protocol_Glacier_Vault", type:"string", controlname:"inptIntProtSet_Glacier_Vault", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "Glacier"}; 
+            GInternetProtocolSetRegistryList[318] = {fieldname:"internet_protocol_Glacier_RegionComboIndex", type:"number", controlname:"comboIntProtSet_Glacier_Region", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "Glacier"}; 
+            GInternetProtocolSetRegistryList[319] = {fieldname:"internet_protocol_Glacier_InternetFolder", type:"string", controlname:"inptInternetFolder", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "Glacier"}; 
+            GInternetProtocolSetRegistryList[320] = {fieldname:"internet_protocol_Glacier_AccountOpt", type:"string", controlname:"inptAccountOpt", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "Glacier"}; 
+
+
+            GInternetProtocolSetRegistryList[321] = {fieldname:"internet_protocol_Glacier_save_access_id", type:"boolean", controlname:"cbIntProtSet_Glacier_save_access_id", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};            
+            GInternetProtocolSetRegistryList[322] = {fieldname:"internet_protocol_Glacier_save_password", type:"boolean", controlname:"cbIntProtSet_Glacier_save_password", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};            
+            GInternetProtocolSetRegistryList[323] = {fieldname:"internet_protocol_Glacier_allow_ipv6", type:"boolean", controlname:"cbIntProtSet_Glacier_allow_ipv6", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};            
+            GInternetProtocolSetRegistryList[324] = {fieldname:"internet_protocol_Glacier_filename_encoding", type:"boolean", controlname:"cbIntProtSet_Glacier_filename_encoding", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};            
+            
+            
+            
+            GInternetProtocolSetRegistryList[325] = {fieldname:"internet_protocol_Glacier_adv_CharsetComboIndex", type:"number", controlname:"comboIntProtSet_Glacier_adv_Charset", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "Glacier"}; 
+            GInternetProtocolSetRegistryList[326] = {fieldname:"internet_protocol_Glacier_adv_replace_characters", type:"boolean", controlname:"cbIntProtSet_Glacier_adv_replace_characters", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};            
+            GInternetProtocolSetRegistryList[327] = {fieldname:"internet_protocol_Glacier_recursive_listing", type:"boolean", controlname:"cbIntProtSet_Glacier_recursive_listing", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};            
+            GInternetProtocolSetRegistryList[328] = {fieldname:"internet_protocol_Glacier_adv_zone", type:"boolean", controlname:"cbIntProtSet_Glacier_adv_zone", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};            
+            GInternetProtocolSetRegistryList[329] = {fieldname:"internet_protocol_Glacier_adv_auto", type:"boolean", controlname:"cbIntProtSet_Glacier_adv_auto", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};            
+            GInternetProtocolSetRegistryList[330] = {fieldname:"internet_protocol_Glacier_adv_list", type:"decimal", controlname:"inptIntProtSet_Glacier_adv_list", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Glacier"};
+            GInternetProtocolSetRegistryList[331] = {fieldname:"internet_protocol_Glacier_adv_upload_min", type:"decimal", controlname:"inptIntProtSet_Glacier_adv_upload_min", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Glacier"};
+            GInternetProtocolSetRegistryList[332] = {fieldname:"internet_protocol_Glacier_adv_timeout", type:"decimal", controlname:"inptIntProtSet_Glacier_adv_timeout", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Glacier"};
+            GInternetProtocolSetRegistryList[333] = {fieldname:"internet_protocol_Glacier_adv_retries", type:"decimal", controlname:"inptIntProtSet_Glacier_adv_retries", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Glacier"};
+            GInternetProtocolSetRegistryList[334] = {fieldname:"internet_protocol_Glacier_adv_http_retries", type:"decimal", controlname:"inptIntProtSet_Glacier_adv_http_retries", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Glacier"};
+            GInternetProtocolSetRegistryList[335] = {fieldname:"internet_protocol_Glacier_proxy_proxy_typeComboIndex", type:"number", controlname:"comboIntProtSet_Glacier_proxy_proxy_type", controltype:"jqxComboBox", default: "0", value: null, ControlAppGroup: "Glacier"}; 
+            GInternetProtocolSetRegistryList[336] = {fieldname:"internet_protocol_Glacier_proxy_proxy_host", type:"string", controlname:"inptIntProtSet_Glacier_proxy_proxy_host", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "Glacier"}; 
+            GInternetProtocolSetRegistryList[337] = {fieldname:"internet_protocol_Glacier_proxy_proxy_port", type:"decimal", controlname:"inptIntProtSet_Glacier_proxy_proxy_port", controltype:"jqxFormattedInput", default: "0", value: null, ControlAppGroup: "Glacier"};
+            GInternetProtocolSetRegistryList[338] = {fieldname:"internet_protocol_Glacier_proxy_login", type:"string", controlname:"inptIntProtSet_Glacier_proxy_login", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "Glacier"}; 
+            GInternetProtocolSetRegistryList[339] = {fieldname:"internet_protocol_Glacier_proxy_password", type:"string", controlname:"inptIntProtSet_Glacier_proxy_password", controltype:"jqxPasswordInput", default: "", value: null, ControlAppGroup: "Glacier"}; 
+            GInternetProtocolSetRegistryList[340] = {fieldname:"internet_protocol_Glacier_proxy_send_host_command", type:"boolean", controlname:"cbIntProtSet_Glacier_proxy_send_host_command", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};                                    
+            GInternetProtocolSetRegistryList[341] = {fieldname:"IntProtSet_Glacier_Security_Mode_Group", type:"string", controlname:"", controltype:"ButtonGroup", default: "rbIntProtSet_Glacier_Security_None", value: null, ControlAppGroup: "Glacier",
+            getfunc: function()
+            {
+                return GetCheckedRadiobuttonName( $("#rbIntProtSet_Glacier_Security_None"), $("#rbIntProtSet_Glacier_Security_TLS"), null, null, null, null ); 
+            }, setfunc: function( option )
+            {
+                  SetRadioGroupChecked( option, $("#rbIntProtSet_Glacier_Security_None"), $("#rbIntProtSet_Glacier_Security_TLS"), null, null, null, null ); 
+            }}; 
+
+            GInternetProtocolSetRegistryList[342] = {fieldname:"internet_protocol_Glacier_Security_SSH_username_password", type:"boolean", controlname:"cbIntProtSet_Glacier_Security_SSH_username_password", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};                                    
+            GInternetProtocolSetRegistryList[343] = {fieldname:"internet_protocol_Glacier_Security_SSH_keyboard", type:"boolean", controlname:"cbIntProtSet_Glacier_Security_SSH_keyboard", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};                                    
+            GInternetProtocolSetRegistryList[344] = {fieldname:"internet_protocol_Glacier_Security_SSH_certificate", type:"boolean", controlname:"cbIntProtSet_Glacier_Security_SSH_certificate", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};                                    
+            GInternetProtocolSetRegistryList[345] = {fieldname:"internet_protocol_Glacier_security_Certificate", type:"boolean", controlname:"comboIntProtSet_Glacier_security_Certificate", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};                                    
+            GInternetProtocolSetRegistryList[346] = {fieldname:"internet_protocol_Glacier_security_CertificatePassword", type:"string", controlname:"inptIntProtSet_Glacier_security_CertificatePassword", controltype:"jqxInput", default: "", value: null, ControlAppGroup: "Glacier"}; 
+            GInternetProtocolSetRegistryList[347] = {fieldname:"internet_protocol_Glacier_security_nopassword", type:"boolean", controlname:"cbIntProtSet_Glacier_security_nopassword", controltype:"jqxCheckBox", default: "false", value: null, ControlAppGroup: "Glacier"};                                    
+             
+             /// next id is 351!!!!        
+                    
+                    
+                    
+                    
+                    
+                    
 
 
 /*

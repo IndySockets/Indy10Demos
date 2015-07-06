@@ -16,9 +16,15 @@
 
                     <div>User ID(login):</div><div><input type="text" id="inptIntProtSet_Rsync_login"/></div><br/>               
                     <div>Password</div><div><input type="password" id="inptAccountOpt"/></div><br/>
-                    <div>Save User ID</div><div><div id="cbIntProtSet_Rsync_save_user_id"/></div><br/>                                
-                    <div>Save Password</div><div><div id="cbIntProtSet_Rsync_save_password"/></div><br/>                                
-                    <div>Allow IPV6</div><div><div id="cbIntProtSet_Rsync_allow_ipv6"/></div><br/>                    
+
+                    <table style="width:250px">
+                    <tr>
+                      <td><div>Save User ID</div><div><div id="cbIntProtSet_Rsync_save_user_id"/></div><br/></td>  
+                      <td><div>Save Password</div><div><div id="cbIntProtSet_Rsync_save_password"/></div><br/></td>
+                      <td><div>Allow IPV6</div><div><div id="cbIntProtSet_Rsync_allow_ipv6"/></div><br/></td>                       
+                    </tr>  
+                    </table>
+                                        
                     <div>Automatically resume incomplete transfers(using temporary filenames until complete)</div><div><div id="cbIntProtSet_Rsync_auto_resume_transfer"/></div>
                     
                                                                                            
@@ -27,16 +33,19 @@
                 <div>
                     <!--Advanced-->
                     <div>Character Set:</div><div id ="comboIntProtSet_Rsync_adv_Charset" style="float: left;"></div><br/><br/>                
-                    <div>Replace characters</div><div><div id="cbIntProtSet_Rsync_adv_replace_characters"/></div>
-                    
-                                                                                                                            
-                    
+                    <div>Replace characters</div><div><div id="cbIntProtSet_Rsync_adv_replace_characters"/></div>                                                                                                                                                                    
                     <div>Timestamps For Uploads:</div><div id ="comboIntProtSet_Rsync_adv_TimestampsForUploads" style="float: left;"></div><br/><br/>                
-                    <div>Zone</div><div><div id="cbIntProtSet_Rsync_adv_zone"/></div> 
-                    <div>Auto</div><div><div id="cbIntProtSet_Rsync_adv_auto"/></div>       
-                    <div>UTC Offsets</div><div><div id="cbIntProtSet_Rsync_adv_UTC"/></div>     
-                    <div>List</div><div><input type="text" id="inptIntProtSet_Rsync_adv_list"/></div>
-                    <div>Upload</div><div><input type="text" id="inptIntProtSet_Rsync_adv_upload_min"/></div><div>min</div>   
+
+                    
+                    <table>                        
+                    <tr>
+                      <td><div>Zone</div><div><div id="cbIntProtSet_Rsync_adv_zone"/></div></td>  
+                      <td><div>Auto</div><div><div id="cbIntProtSet_Rsync_adv_auto"/></div></td>                      
+                      <td class="auto-style_IntProtAdv2" >UTC Offsets List<div><input type="text" id="inptIntProtSet_Rsync_adv_list"/></div></td>                       
+                      <td class="auto-style_IntProtAdv1" >Upload (min)<div><input type="text" id="inptIntProtSet_Rsync_adv_upload_min"/></div></td>                       
+                    </tr>  
+                    </table>
+
                     <div>Timeout</div><div><input type="text" id="inptIntProtSet_Rsync_adv_timeout"/></div><div>seconds. These are global settings</div>   
                     <div>Retries</div><div><input type="text" id="inptIntProtSet_Rsync_adv_retries"/></div>   
                     <div>HTTP Authentication Retries</div><div><input type="text" id="inptIntProtSet_Rsync_adv_http_retries"/></div>   
