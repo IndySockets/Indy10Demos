@@ -241,6 +241,7 @@ object frmMain: TfrmMain
     OnDisconnect = ServerDisconnect
     OnException = ServerException
     Scheduler = IdSchedulerOfThreadDefault1
+    OnQuerySSLPort = ServerQuerySSLPort
     OnCommandGet = ServerCommandGet
     Top = 200
   end
