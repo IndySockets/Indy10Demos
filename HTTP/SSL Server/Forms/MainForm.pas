@@ -85,6 +85,7 @@ type
     procedure OpenSSLGetPassword(
       var Password: String);
     procedure cbMaskPassClick(Sender: TObject);
+    procedure ServerQuerySSLPort(APort: Word; var VUseSSL: Boolean);    
   private
     { Private declarations }
     function CheckStartOk : Boolean;
@@ -455,9 +456,16 @@ begin
   Log(AException.Message, clRed);
 end;
 
+//***!!!!!NB!!!!!! IF USING NON STD PORT i.e. NOT 443 then this MUST BE SETUP!!!!!!!
+//else you get: Project IHTTPServer.exe raised exception class EIdHTTPErrorParsingCommand with message 'Error in parsing command.'.
+procedure TfrmMain.ServerQuerySSLPort(APort: Word; var VUseSSL: Boolean);
+begin
+  VUseSSL:=(APort=StrToIntDef(edPort.Text,443));
+end;
+
 function TfrmMain.InternalServerBeforeStart: Boolean;
 begin
-  // Preform your startup code here.  If you do not wish the server to start
+  // Perform your startup code here.  If you do not wish the server to start
   // then simply return false from this function and report back the proper
   // error by calling Log(YourMessage, clRed);
   result := true;
